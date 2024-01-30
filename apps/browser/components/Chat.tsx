@@ -123,7 +123,7 @@ const Chat: React.FC<ChatProps> = ({
                 return handleGoalSubmit(message);
               }
             }}
-            placeholder="Ask Evo anything..."
+            placeholder="Search up emerging diseases"
             className="!rounded-lg !p-4 !pl-12"
             leftAdornment={
               <>
