@@ -61,7 +61,7 @@ const Chat: React.FC<ChatProps> = ({
   const shouldShowExamplePrompts = !chatId || (!logs.length && !isStarting && !isRunning);
 
   const handleGoalSubmit = async (goal: string): Promise<void> => {
-    if (!firstTimeUser) {
+    if (firstTimeUser) {
       setWelcomeModalOpen(true);
       return;
     }
@@ -74,7 +74,7 @@ const Chat: React.FC<ChatProps> = ({
   };
 
   const onUploadOpen = () => {
-    if (!firstTimeUser) {
+    if (firstTimeUser) {
       setWelcomeModalOpen(true);
       return;
     }
