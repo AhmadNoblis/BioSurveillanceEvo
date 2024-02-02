@@ -23,23 +23,23 @@ export default function WelcomeModal(props: WelcomeModalProps) {
   const IntroFlow = (
     <>
       <div className="relative flex h-full w-full flex-col items-center justify-center w-full">
+      <img src="/arch-diagram-w-logo.png" alt="Architecture" className="w-64 h-auto pb-6" />
         <div className="text-center">
-          evo.ninja is a generalist AI agent with a unique<br/>chameleon architecture:
+          This tool is meant to augment human biosurveillance capabilities by giving you an AI assistant to search the internet:
         </div>
-        <img src="/arch-diagram-w-logo.png" alt="Architecture" className="w-64 h-auto pb-6" />
+        
         <div className="text-center">
-        Created by the <a href="https://polywrap.io" target="_blank" className="text-cyan-500">Polywrap</a> team, evo.ninja won<br/>"Best Generalist
-        Agent" from AutoGPT.
+        Created by Noblis,<br/> and based on evo.ninja and AutoGPT.
         </div>
-        <img src="/polywrap-award.png" alt="Award" className="w-32 h-auto pb-6 pt-6" />
-        <div className="text-center">
+        {/*<img src="/polywrap-award.png" alt="Award" className="w-32 h-auto pb-6 pt-6" />*/}
+        {/*<div className="text-center">
           Join our <a href="https://discord.gg/r3rwh69cCa" target="_blank" className="text-cyan-500">discord</a> and <a href="https://blog.polywrap.io" target="_blank" className="text-cyan-500">substack</a> to learn and
           stay<br/>informed with our latest creations!
-        </div>
+  </div>*/}
       </div>
       <div className="flex justify-end pt-8">
         <Button onClick={() => setSignInFlow(true)}>
-          <div>Try Evo</div>
+          <div>Try It Out!</div>
           <ArrowRight size={16} color="white" />
         </Button>
       </div>
@@ -59,7 +59,7 @@ export default function WelcomeModal(props: WelcomeModalProps) {
           <div className="border-b-2 border-zinc-700 pb-8 text-center">
             This is a technical preview, feedback and questions are appreciated!
           </div>
-          <div className="space-y-6 border-b-2 border-zinc-700 pb-8">
+          {/*<div className="space-y-6 border-b-2 border-zinc-700 pb-8">
             <p>Sign in below to save your sessions</p>
             <div className="space-y-2">
               <Button
@@ -89,7 +89,7 @@ export default function WelcomeModal(props: WelcomeModalProps) {
                 <div>Sign in with Google</div>
               </Button>
             </div>
-          </div>
+          </div>*/}
         </>
       )}
       <AccountConfig
@@ -99,18 +99,18 @@ export default function WelcomeModal(props: WelcomeModalProps) {
         setTelemetry={setTelemetry}
         error={error}
       />
-      <div className="flex justify-end border-t-2 border-zinc-700 pt-8">
+      {/*<div className="flex justify-end border-t-2 border-zinc-700 pt-8">*/}
         <Button onClick={onSave}>
           <div>Get Started</div>
           <ArrowRight size={16} color="white" />
         </Button>
-      </div>
+      {/*</div>*/}
     </>
   );
 
   return (
     <>
-      <Modal isOpen={isOpen} title="Welcome to Evo Ninja" onClose={onClose}>
+      <Modal isOpen={isOpen} title="Welcome to BioSurveillance Tool" onClose={onClose}>
         {sigInFlow ? SignInFlow : IntroFlow}
       </Modal>
     </>
