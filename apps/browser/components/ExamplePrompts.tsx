@@ -34,16 +34,16 @@ export default function ExamplePrompts(props: ExamplePromptsProps) {
 
   return (
     <div className="flex flex-col items-center space-y-3">
-      <h2 className="w-full text-center font-normal">
+  <h2 className="w-full text-center font-normal text-zinc-500">
         Not sure where to start?{` `}
         {isMobile && <br />}
-        <span className="text-sm md:text-base">Try asking one of these:</span>
+        <span className="text-sm md:text-base text-zinc-500">Try asking one of these:</span>
       </h2>{" "}
       {examplePrompts.map((prompt, index) => (
         <div
           key={index}
           className={clsx(
-            "m-1 cursor-pointer rounded-lg  border-2 border-zinc-700 bg-zinc-900/50 p-2.5 text-xs text-zinc-400 transition-all duration-300 ease-in-out hover:bg-cyan-600 hover:text-white"
+            "m-1 cursor-pointer rounded-lg  border-2 border-zinc-700 bg-zinc-900/50 p-2.5 text-xs text-zinc-100 transition-all duration-300 ease-in-out hover:bg-zinc-600 hover:text-white"
           )}
           onClick={() => handleClick(prompt)}
         >

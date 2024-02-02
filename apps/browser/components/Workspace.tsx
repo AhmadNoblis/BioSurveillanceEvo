@@ -48,7 +48,7 @@ function Workspace({ onUpload }: WorkspaceProps) {
   return (
     <div className="p-2">
       <div className="flex w-full items-center justify-between space-x-1 px-2">
-        <div className="text-xs uppercase tracking-widest text-zinc-500">
+        <div className="text-xs uppercase tracking-widest text-zinc-100">
           Current Workspace
         </div>
         <div className="flex items-center space-x-1">
@@ -59,7 +59,7 @@ function Workspace({ onUpload }: WorkspaceProps) {
           {workspaceFiles.length !== 0 && (
             <Button
               variant="icon"
-              className="text-zinc-500 hover:text-cyan-500"
+              className="text-zinc-100 hover:text-zinc-500"
               onClick={downloadFilesAsZip}
             >
               <DownloadSimple size={18} weight="bold" />
@@ -69,16 +69,16 @@ function Workspace({ onUpload }: WorkspaceProps) {
       </div>
       <div className="relative h-full max-h-[24vh] overflow-y-auto [scrollbar-gutter:stable]">
         {isChatLoading ? (
-          <div className="mt-1 h-24 w-full animate-pulse rounded-lg bg-zinc-700" />
+          <div className="mt-1 h-24 w-full animate-pulse rounded-lg bg-zinc-100" />
         ) : (
           <>
             {workspaceFiles.length === 0 ? (
               <div
-                className="mt-1 flex cursor-pointer flex-col items-center justify-center space-y-2 rounded-lg border-2 border-dashed border-zinc-500 p-7 text-center transition-colors duration-300 hover:border-cyan-500 hover:bg-zinc-950 hover:text-cyan-500"
+                className="mt-1 flex cursor-pointer flex-col items-center justify-center space-y-2 rounded-lg border-2 border-dashed border-zinc-500 p-7 text-center transition-colors duration-300 hover:border-zinc-100 hover:bg-zinc-950 hover:text-zinc-100"
                 onClick={onOpen}
               >
                 <FilePlus size={24} className="text-[currentColor]" />
-                <p className="leading-regular text-xs text-zinc-500">
+                <p className="leading-regular text-xs text-zinc-100">
                   You currently have no files in your workspace. Drop or click
                   here to add them.
                 </p>
@@ -88,9 +88,9 @@ function Workspace({ onUpload }: WorkspaceProps) {
                 <div
                   {...getRootProps({
                     className: clsx(
-                      "dropzone group h-full space-y-1 rounded-lg border-2 border-solid border-zinc-900 p-[6px] transition-all duration-100 ease-in-out",
+                      "dropzone group h-full space-y-1 rounded-lg border-2 border-solid border-zinc-100 p-[6px] transition-all duration-100 ease-in-out",
                       {
-                        "cursor-pointer !border-dashed !border-cyan-500 !bg-zinc-950":
+                        "cursor-pointer !border-dashed !border-zinc-500 !bg-zinc-100":
                           isDragAccept,
                       }
                     ),
@@ -102,7 +102,7 @@ function Workspace({ onUpload }: WorkspaceProps) {
                         key={i}
                         onClick={() => handleFileClick(file)}
                         className={clsx(
-                          "flex w-full cursor-pointer items-center space-x-2 rounded p-1 text-sm text-cyan-500 transition-colors duration-300",
+                          "flex w-full cursor-pointer items-center space-x-2 rounded p-1 text-sm text-zinc-500 transition-colors duration-300",
                           {
                             "hover:bg-zinc-800 hover:text-white": !isDragAccept,
                           }

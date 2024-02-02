@@ -575,5 +575,5 @@ export const examplePrompts: ExamplePrompt[]  = [
     files: [file1Csv, file2Csv]
   },*/
   { prompt: "Can you look up recent disease/virus outbreaks in sub-saharan Africa, try to use local newspapers/journals" },
-  { prompt: "Can you look up recent disease/ virus outbreaks in high-risk areas by using local newspapers/journals" },
+  { prompt: "Can you look up recent disease/virus outbreaks in high-risk areas by using local newspapers/journals" },
 ];

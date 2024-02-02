@@ -92,7 +92,19 @@ function AccountConfig(props: AccountConfigProps) {
             </div>
           )}
         </div>
-
+        <div className="w-full space-y-1">
+          <h3 className="text-sm font-semibold">Data</h3>
+          <fieldset className="flex w-full items-center justify-between">
+            <label className="text-sm text-zinc-200">
+              Share prompts with Evo
+            </label>
+            <TextField
+              checked={telemetry}
+              onChange={(e) => setTelemetry(e.target.checked)}
+              type="checkbox"
+            />
+          </fieldset>
+        </div>
 
       </div>
     </>
