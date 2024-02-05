@@ -127,7 +127,7 @@ const Chat: React.FC<ChatProps> = ({
             className="!rounded-lg !p-4 !pl-12"
             leftAdornment={
               <>
-                <Button variant="icon" className="!text-white" onClick={onUploadOpen}>
+                <Button variant="icon" className="!text-zinc-500" onClick={onUploadOpen}>
                   <UploadSimple size={20} />
                 </Button>
                 <input {...getInputProps()} />

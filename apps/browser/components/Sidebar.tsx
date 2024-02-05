@@ -336,7 +336,7 @@ const Sidebar = ({
                     );
                   }}
                 >
-                  <DiscordLogo size={20} />
+                  <DiscordLogo size={0} />
                 </Button>
                 <Button
                   variant="icon"
@@ -348,7 +348,7 @@ const Sidebar = ({
                     );
                   }}
                 >
-                  <GithubLogo size={20} />
+                  <GithubLogo size={0} />
                 </Button>
               </div>
             </div>

@@ -26,13 +26,13 @@ const Button = ({
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
   const hierarchyClasses = {
     primary: clsx(
-      "bg-button border-cyan-300 bg-gradient-to-b from-cyan-300 via-cyan-600 to-cyan-800 bg-bottom text-white",
+        "bg-button border-cyan-300 bg-gradient-to-b from-cyan-300 via-cyan-600 to-cyan-800 bg-bottom text-white",
       {
         "hover:bg-top": !disabled,
       }
     ),
     secondary: clsx(
-      "bg-button border-zinc-700 bg-gradient-to-b from-zinc-700 via-zinc-800 to-zinc-900 bg-bottom text-white",
+      "bg-zinc-500 border-zinc-700 bg-gradient-to-b from-zinc-700 via-zinc-800 to-zinc-900 bg-bottom text-white",
       {
         "hover:bg-top": !disabled,
       }
@@ -45,8 +45,8 @@ const Button = ({
   };
 
   const variantClasses = {
-    icon: "border-none bg-none !p-1 text-zinc-500 hover:!text-cyan-500 focus-within:ring-2 focus-within:ring-cyan-500/10",
-    text: "border-none bg-none !p-1 text-cyan-500 hover:text-white",
+    icon: "border-none bg-none !p-1 text-zinc-500 hover:!text-zinc-500 focus-within:ring-2 focus-within:ring-zinc-500/10",
+    text: "border-none bg-none !p-1 text-zinc-500 hover:text-white",
   };
   const variantClass = variant ? variantClasses[variant] : null;
   return (
