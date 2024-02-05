@@ -74,11 +74,11 @@ function Workspace({ onUpload }: WorkspaceProps) {
           <>
             {workspaceFiles.length === 0 ? (
               <div
-                className="mt-1 flex cursor-pointer flex-col items-center justify-center space-y-2 rounded-lg border-2 border-dashed border-zinc-500 p-7 text-center transition-colors duration-300 hover:border-cyan-500 hover:bg-zinc-950 hover:text-cyan-500"
+                className="mt-1 flex cursor-pointer flex-col items-center justify-center space-y-2 rounded-lg border-2 border-dashed border-zinc-500 p-7 text-center transition-colors duration-300 hover:border-zinc-100 hover:bg-zinc-950 hover:text-zinc-100"
                 onClick={onOpen}
               >
-                <FilePlus size={24} className="text-[currentColor]" />
-                <p className="leading-regular text-xs text-zinc-500">
+                <FilePlus size={24} className="text-[#D9E2EC]" />
+                <p className="leading-regular text-xs text-zinc-100">
                   You currently have no files in your workspace. Drop or click
                   here to add them.
                 </p>

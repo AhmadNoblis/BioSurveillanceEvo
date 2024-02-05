@@ -31,11 +31,11 @@ const Logo = ({
             <>
               {/* Replace the following with SVG paths for "Noblis" */}
               <text
-                x="50%"
+                x="35%"
                 y="50%"
                 textAnchor="middle"
-                fill="currentColor"
-                fontSize="150"
+                fill="#D9E2EC"
+                fontSize="500"
                 dy=".3em"
               >
                 Noblis
