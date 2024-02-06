@@ -75,9 +75,9 @@ export default function ChatDetails({
                 <div key={stepTitle} className="space-y-2 md:space-y-4">
                   <div
                     className={clsx(
-                      "prose-condensed prose prose-zinc prose-invert relative max-w-none rounded-md bg-zinc-800 shadow-md transition-colors duration-0 ease-in-out hover:shadow-lg",
+                      "prose-condensed prose prose-zinc prose-invert relative max-w-none rounded-md bg-zinc-500 shadow-md transition-colors duration-0 ease-in-out hover:shadow-lg",
                       {
-                        "cursor-pointer duration-150 hover:bg-zinc-700":
+                        "cursor-pointer duration-150 hover:bg-zinc-100":
                           expandedStep !== stepTitle && stepDetails.length > 0,
                       }
                     )}
@@ -104,7 +104,7 @@ export default function ChatDetails({
                           weight="bold"
                           size={14}
                           className={clsx(
-                            "transform text-white transition-transform duration-500 ease-in-out group-hover:text-cyan-500",
+                            "transform text-white transition-transform duration-500 ease-in-out group-hover:text-zinc-800",
                             expandedStep !== stepTitle && "rotate-180"
                           )}
                         />
@@ -128,7 +128,7 @@ export default function ChatDetails({
                   {status &&
                     Object.keys(logs.details).length - 1 === index &&
                     !isGoal && (
-                      <div className="flex items-center space-x-2 text-cyan-500">
+                      <div className="flex items-center space-x-2 text-zinc-500">
                         <LoadingCircle />
                         <div>{status}</div>
                       </div>

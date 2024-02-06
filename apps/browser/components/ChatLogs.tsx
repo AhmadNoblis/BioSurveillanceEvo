@@ -130,7 +130,7 @@ export default function ChatLogs({
                         <span className="SenderName font-medium">Evo</span>
                         {!isRunning && (
                           <button
-                            className="group/button flex items-center space-x-2 text-cyan-500 hover:text-cyan-400"
+                            className="group/button flex items-center space-x-2 text-zinc-500 hover:text-zinc-500"
                             onClick={() =>
                               setLogsDetails({
                                 open: true,
@@ -155,9 +155,9 @@ export default function ChatLogs({
                       isRunning &&
                       sanitizedLogs.length - 1 === index && (
                         <>
-                          <div className="flex items-center space-x-2 text-cyan-500">
+                          <div className="flex items-center space-x-2 text-zinc-500">
                             <LoadingCircle />
-                            <div className="group/loading flex cursor-pointer items-center space-x-2 text-cyan-500 transition-all duration-500 hover:text-cyan-700">
+                            <div className="group/loading flex cursor-pointer items-center space-x-2 text-zinc-500 transition-all duration-500 hover:text-zinc-700">
                               <div
                                 className="group-hover/loading:underline"
                                 onClick={() =>
