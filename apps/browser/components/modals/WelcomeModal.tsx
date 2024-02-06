@@ -24,13 +24,13 @@ export default function WelcomeModal(props: WelcomeModalProps) {
     <>
       <div className="relative flex h-full w-full flex-col items-center justify-center w-full">
       <img src="/arch-diagram-w-logo.png" alt="Architecture" className="w-64 h-auto pb-6" />
-        <div className="text-center">
-          This tool is meant to augment human biosurveillance capabilities by giving you an AI assistant to search the internet:
-        </div>
-        
-        <div className="text-center">
+      <div className="text-center" style={{ color: '#51565F' }}>
+        This tool is meant to augment human biosurveillance capabilities by giving you an AI assistant to search the internet:
+      </div>
+
+      <div className="text-center" style={{ color: '#51565F' }}>
         Created by Noblis,<br/> and based on evo.ninja and AutoGPT.
-        </div>
+      </div>
         {/*<img src="/polywrap-award.png" alt="Award" className="w-32 h-auto pb-6 pt-6" />*/}
         {/*<div className="text-center">
           Join our <a href="https://discord.gg/r3rwh69cCa" target="_blank" className="text-cyan-500">discord</a> and <a href="https://blog.polywrap.io" target="_blank" className="text-cyan-500">substack</a> to learn and
@@ -56,9 +56,12 @@ export default function WelcomeModal(props: WelcomeModalProps) {
         </div>
       ) : (
         <>
-          <div className="border-b-2 border-zinc-700 pb-8 text-center">
-            This is a technical preview, feedback and questions are appreciated!
-          </div>
+      <div className="border-b-2 border-zinc-500 pb-8 text-center text-zinc-500">
+        This is a technical preview, feedback and questions are appreciated!
+      </div>
+
+
+
           {/*<div className="space-y-6 border-b-2 border-zinc-700 pb-8">
             <p>Sign in below to save your sessions</p>
             <div className="space-y-2">
