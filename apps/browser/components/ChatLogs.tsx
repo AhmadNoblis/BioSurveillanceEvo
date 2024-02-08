@@ -94,7 +94,7 @@ export default function ChatLogs({
               key={index}
               className={"m-auto w-full max-w-[56rem] self-center"}
             >
-              <div className="group relative flex w-full animate-slide-down items-start space-x-3 rounded-lg p-2 pb-10 text-white opacity-0 transition-colors duration-300 ">
+              <div className="group relative flex w-full animate-slide-down items-start space-x-3 rounded-lg p-2 pb-10 text-zinc-700 opacity-0 transition-colors duration-300 ">
                 <>
                   {session?.user.image && session?.user.email ? (
                     <img
@@ -102,32 +102,35 @@ export default function ChatLogs({
                       className="h-8 w-8 rounded-full bg-yellow-500"
                     />
                   ) : (
-                    <div className="h-8 w-8 rounded-full bg-yellow-500" />
+                    <div className="h-8 w-8 rounded-full bg-zinc-500" />
                   )}
                 </>
                 <div className="w-full max-w-[calc(100vw-84px)] space-y-2 pt-1 md:max-w-[49rem]">
                   <>
-                    <div className="flex items-center justify-between">
-                      <span className="SenderName font-medium">
-                        {session?.user.name ? session?.user.name : "User"}
-                      </span>
-                    </div>
+                  <div className="flex items-center justify-between">
+                    <span className="SenderName font-medium" style={{ color: 'zinc-500' }}>
+                      {session?.user.name ? session?.user.name : "User"}
+                    </span>
+                  </div>
+
                   </>
                   <div className="prose prose-invert w-full max-w-none">
-                    {msg.userMessage}
+                    <div style={{ color: 'black' }}>{msg.userMessage}</div>
                   </div>
+
+
                 </div>
               </div>
               <div
                 key={index}
                 className={"m-auto w-full max-w-[56rem] self-center"}
               >
-                <div className="group relative flex w-full animate-slide-down items-start space-x-3 rounded-lg p-2 pb-10 text-white opacity-0 transition-colors duration-300 ">
+                <div className="group relative flex w-full animate-slide-down items-start space-x-3 rounded-lg p-2 pb-10 text-zinc-700 opacity-0 transition-colors duration-300 ">
                   <Logo wordmark={false} className="!w-8 !min-w-[2rem]" />
                   <div className="w-full max-w-[calc(100vw-84px)] space-y-2 pt-1 md:max-w-[49rem]">
                     <>
                       <div className="flex items-center justify-between">
-                        <span className="SenderName font-medium">Evo</span>
+                        <span className="SenderName font-medium">Biosurveillance AI</span>
                         {!isRunning && (
                           <button
                             className="group/button flex items-center space-x-2 text-zinc-500 hover:text-zinc-500"

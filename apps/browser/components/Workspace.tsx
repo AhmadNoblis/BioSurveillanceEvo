@@ -74,7 +74,7 @@ function Workspace({ onUpload }: WorkspaceProps) {
           <>
             {workspaceFiles.length === 0 ? (
               <div
-                className="mt-1 flex cursor-pointer flex-col items-center justify-center space-y-2 rounded-lg border-2 border-dashed border-zinc-500 p-7 text-center transition-colors duration-300 hover:border-zinc-100 hover:bg-zinc-950 hover:text-zinc-100"
+                className="mt-1 flex cursor-pointer flex-col items-center justify-center space-y-2 rounded-lg border-2 border-dashed border-zinc-500 p-7 text-center transition-colors duration-300 hover:border-zinc-100 hover:bg-zinc-500 hover:text-zinc-100"
                 onClick={onOpen}
               >
                 <FilePlus size={24} className="text-[#D9E2EC]" />

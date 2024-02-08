@@ -77,7 +77,7 @@ export default function ChatDetails({
                     className={clsx(
                       "prose-condensed prose prose-zinc prose-invert relative max-w-none rounded-md bg-zinc-500 shadow-md transition-colors duration-0 ease-in-out hover:shadow-lg",
                       {
-                        "cursor-pointer duration-150 hover:bg-zinc-100":
+                        "cursor-pointer duration-150 hover:bg-zinc-700":
                           expandedStep !== stepTitle && stepDetails.length > 0,
                       }
                     )}
