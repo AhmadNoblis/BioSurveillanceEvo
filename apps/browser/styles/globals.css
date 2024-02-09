@@ -47,6 +47,10 @@ code {
 
 }
 
+.prose-invert {
+  @apply prose-headings:font-medium;
+  color: black; /* Set the text color to black */
+}
 
 
 ::-webkit-scrollbar {

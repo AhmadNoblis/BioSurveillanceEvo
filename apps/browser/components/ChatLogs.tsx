@@ -89,6 +89,8 @@ export default function ChatLogs({
         className="w-full flex-1 items-center space-y-6 overflow-y-auto overflow-x-clip px-2 py-3 text-left [scrollbar-gutter:stable]"
       >
         {sanitizedLogs.map((msg, index) => {
+        console.log("Evo Message:"); // Print Evo message to console
+
           return (
             <div
               key={index}
@@ -149,6 +151,7 @@ export default function ChatLogs({
                         )}
                       </div>
                     </>
+                    
                     {msg.evoMessage && (
                       <ReactMarkdown className="prose prose-invert w-full max-w-none">
                         {msg.evoMessage}

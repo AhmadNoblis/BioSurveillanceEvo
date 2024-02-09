@@ -82,6 +82,8 @@ export class ProxyLlmApi implements LlmApi {
       throw Error("Error trying to get response from completions proxy.", error);
     }
     const { message } = await response.json();
+    console.log("Received message"); // Print the message to the terminal
+
     return message;
   }
 }
