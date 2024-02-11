@@ -5,6 +5,9 @@ import { CaretUp, CheckCircle } from "@phosphor-icons/react";
 import { MessageSet } from "@/lib/utils/sanitizeLogsDetails";
 import clsx from "clsx";
 import LoadingCircle from "../LoadingCircle";
+import { saveAs } from 'file-saver'; // Ensure file-saver is installed
+
+
 
 interface ChatDetailsProps {
   isOpen: boolean;
@@ -22,6 +25,18 @@ export default function ChatDetails({
   const [expandedStep, setExpandedStep] = useState<string | null>(null);
   const [initialToggle, setInitialToggle] = useState<boolean>(false);
   const contentRefs = useRef<{ [index: number]: HTMLDivElement | null }>({});
+
+
+  // Function to download chat details
+  const downloadChatDetails = () => {
+    const detailsContent = Object.entries(logs.details).map(([stepTitle, stepDetails]) => {
+      return `### ${stepTitle}\n\n${stepDetails.join('\n\n')}`;
+    }).join('\n\n');
+
+    const blob = new Blob([detailsContent], { type: 'text/markdown;charset=utf-8' });
+    saveAs(blob, "ChatDetails.md");
+  };
+
 
   const toggleStep = (step: string, index: number) => {
     const currentEl = contentRefs.current[index];
@@ -66,6 +81,15 @@ export default function ChatDetails({
       title="Details"
       panelStyles={{ maxWidth: "max-w-screen-md" }}
     >
+        {/* Download Button */}
+        <div className="flex justify-end p-2">
+    <button
+      onClick={downloadChatDetails}
+      className="text-zinc-100 hover:text-zinc-700 transition-colors duration-300 bg-zinc-500 p-2 rounded-md"
+    >
+      Download Details
+        </button>
+      </div>
       <div className="space-y-2 md:space-y-2">
         {logs &&
           Object.entries(logs.details).map(
