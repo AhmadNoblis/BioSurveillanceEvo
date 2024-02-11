@@ -13,6 +13,7 @@ import Logo from "./Logo";
 import { useSession } from "next-auth/react";
 import ChatDetails from "./modals/ChatDetails";
 import { sanitizeLogs } from "@/lib/utils/sanitizeLogsDetails";
+import { saveAs } from 'file-saver'; // Make sure to install file-saver package
 
 export interface ChatLogsProps {
   logs: ChatLog[];
@@ -30,6 +31,7 @@ export default function ChatLogs({
   const listContainerRef = useRef<HTMLDivElement | null>(null);
   const [isAtBottom, setIsAtBottom] = useState(true);
   const { data: session } = useSession();
+
   const scrollToBottom = () => {
     listContainerRef.current?.scrollTo({
       top: listContainerRef.current.scrollHeight,
@@ -47,7 +49,6 @@ export default function ChatLogs({
   }>({ open: false, index: 0 });
 
   const handleScroll = useCallback(() => {
-    // Detect if the user is at the bottom of the list
     const container = listContainerRef.current;
     if (container) {
       const isScrolledToBottom =
@@ -57,7 +58,6 @@ export default function ChatLogs({
   }, []);
 
   useEffect(() => {
-    // If the user is at the bottom, scroll to the new item
     if (isAtBottom) {
       scrollToBottom();
     }
@@ -66,11 +66,8 @@ export default function ChatLogs({
   useEffect(() => {
     const container = listContainerRef.current;
     if (container) {
-      // Add scroll event listener
       container.addEventListener("scroll", handleScroll);
     }
-
-    // Clean up listener
     return () => {
       if (container) {
         container.removeEventListener("scroll", handleScroll);
@@ -78,10 +75,28 @@ export default function ChatLogs({
     };
   }, [handleScroll]);
 
+  // Function to download the chat logs with both userMessage and evoMessage
+  const downloadChatLogs = useCallback(() => {
+    const chatContent = sanitizedLogs.map(log => {
+      return `**User:** ${log.userMessage}\n**AI:** ${log.evoMessage || 'No response'}\n`;
+    }).join('\n\n'); // Separate each entry with two newlines for clarity
+    const blob = new Blob([chatContent], { type: 'text/markdown;charset=utf-8' });
+    saveAs(blob, `${chatName}.md`);
+  }, [sanitizedLogs, chatName]);
+
+
   return (
     <>
-      <div className="flex h-20 items-center justify-center border-b-2 border-zinc-800 md:h-12">
+      <div className="flex h-20 items-center justify-between border-b-2 border-zinc-800 md:h-12 px-4">
         <div>{chatName}</div>
+        {/* Download button */}
+        <button
+          onClick={downloadChatLogs}
+          className="text-zinc-500 hover:text-zinc-400 transition-colors duration-300"
+          style={{ backgroundColor: 'transparent', borderColor: 'transparent' }}
+        >
+          Download
+        </button>
       </div>
       <div
         ref={listContainerRef}
@@ -91,6 +106,11 @@ export default function ChatLogs({
         {sanitizedLogs.map((msg, index) => {
         console.log("Evo Message:"); // Print Evo message to console
 
+
+
+
+
+        
           return (
             <div
               key={index}

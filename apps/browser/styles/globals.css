@@ -43,14 +43,31 @@ code {
 
 .prose {
   @apply prose-headings:font-medium;
+
+}
+
+.prose {
   color: black; /* Set the text color to black */
 
 }
 
-.prose-invert {
-  @apply prose-headings:font-medium;
-  color: black; /* Set the text color to black */
+.prose-invert{
+  color: black;
 }
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: black; /* Adjusts BigHeader in the output text black */
+}
+
+.prose :where(strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: black; /* Makes subheader black */
+}
+
 
 
 ::-webkit-scrollbar {
