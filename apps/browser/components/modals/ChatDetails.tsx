@@ -14,6 +14,7 @@ interface ChatDetailsProps {
   onClose: () => void;
   logs: MessageSet;
   status?: string;
+  
 }
 
 export default function ChatDetails({
@@ -81,15 +82,16 @@ export default function ChatDetails({
       title="Details"
       panelStyles={{ maxWidth: "max-w-screen-md" }}
     >
-        {/* Download Button */}
-        <div className="flex justify-end p-2">
-    <button
-      onClick={downloadChatDetails}
-      className="text-zinc-100 hover:text-zinc-700 transition-colors duration-300 bg-zinc-500 p-2 rounded-md"
-    >
-      Download Details
-        </button>
-      </div>
+{/* Download Button */}
+<div className="flex justify-end p-2">
+  <button
+    onClick={downloadChatDetails}
+    className="prose prose-condensed prose-zinc prose-invert relative max-w-none rounded-md bg-zinc-300 shadow-md transition-colors duration-0 ease-in-out hover:shadow-lg hover:bg-zinc-500 cursor-pointer"
+  >
+    Download Details
+  </button>
+</div>
+
       <div className="space-y-2 md:space-y-2">
         {logs &&
           Object.entries(logs.details).map(
@@ -99,9 +101,9 @@ export default function ChatDetails({
                 <div key={stepTitle} className="space-y-2 md:space-y-4">
                   <div
                     className={clsx(
-                      "prose-condensed prose prose-zinc prose-invert relative max-w-none rounded-md bg-zinc-500 shadow-md transition-colors duration-0 ease-in-out hover:shadow-lg",
+                      "prose-condensed prose prose-zinc prose-invert relative max-w-none rounded-md bg-zinc-300 shadow-md transition-colors duration-0 ease-in-out hover:shadow-lg",
                       {
-                        "cursor-pointer duration-150 hover:bg-zinc-700":
+                        "cursor-pointer duration-150 hover:bg-zinc-500":
                           expandedStep !== stepTitle && stepDetails.length > 0,
                       }
                     )}

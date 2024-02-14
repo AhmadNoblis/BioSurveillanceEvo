@@ -69,6 +69,14 @@ code {
 }
 
 
+.prose :where(.prose > ul > li > *:last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+  color: black;
+}
+
+.prose :where(a):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  color: black;
+}
+
 
 ::-webkit-scrollbar {
   @apply w-1 h-1 rounded;
