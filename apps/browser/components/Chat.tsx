@@ -156,8 +156,20 @@ useEffect(() => {
 
   const { getInputProps, open } = useWorkspaceUploadDrop(onUpload);
   const firstTimeUser = useFirstTimeUser();
-
   const shouldShowExamplePrompts = !chatId || (!logs.length && !isStarting && !isRunning);
+
+  const handleGoalSubmit = async (goal: string): Promise<void> => {
+    if (firstTimeUser) {
+      setWelcomeModalOpen(true);
+      return;
+    }
+  if (!goal) {
+    setError("Please enter a goal.");
+    return;
+  }
+  setMessage("");
+  return onGoalSubmit(goal);
+};
 
   const onUploadOpen = () => {
     if (firstTimeUser) {
@@ -187,7 +199,11 @@ useEffect(() => {
             : "mx-auto max-w-[56rem] flex-col px-4"
         )}
       >
-        {shouldShowExamplePrompts && <ExamplePrompts onClick={() => {}} />}
+        {shouldShowExamplePrompts && (
+          <ExamplePrompts
+            onClick={handleGoalSubmit}
+          />
+        )}
         <div
           className={clsx(
             "mb-4 flex w-full items-center justify-center gap-4 self-center",
