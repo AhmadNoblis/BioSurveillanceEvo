@@ -288,8 +288,8 @@ const Sidebar = ({
                   />
                   <div
                     className={clsx(
-                      "inline-flex w-full -translate-x-2 transform cursor-pointer items-center space-x-2 rounded-lg p-2 transition-colors hover:bg-zinc-800",
-                      { "bg-zinc-800": dropdownOpen }
+                      "inline-flex w-full -translate-x-2 transform cursor-pointer items-center space-x-2 rounded-lg p-2 transition-colors hover:bg-zinc-500",
+                      { "bg-zinc-500": dropdownOpen }
                     )}
                     onClick={() => setDropdownOpen(!dropdownOpen)}
                   >
@@ -336,7 +336,7 @@ const Sidebar = ({
                     );
                   }}
                 >
-                  <DiscordLogo size={20} />
+                  <DiscordLogo size={0} />
                 </Button>
                 <Button
                   variant="icon"
@@ -348,7 +348,7 @@ const Sidebar = ({
                     );
                   }}
                 >
-                  <GithubLogo size={20} />
+                  <GithubLogo size={0} />
                 </Button>
               </div>
             </div>

@@ -46,7 +46,7 @@ export default function Modal(props: PropsWithChildren<ModalProps>) {
   const maxWidth = panelStyles?.maxWidth ?? "max-w-[540px]";
 
   const defaultContentStyles = clsx(
-    "bg-zinc-900 [scrollbar-gutter:stable]",
+    "bg-zinc-100 [scrollbar-gutter:stable]",
     contentStyles?.padding ? contentStyles?.padding : "p-4 pr-3 md:p-8 md:pr-6",
     contentStyles?.["max-h"]
       ? contentStyles?.["max-h"]
@@ -116,7 +116,7 @@ export default function Modal(props: PropsWithChildren<ModalProps>) {
                     e.stopPropagation();
                   }}
                 >
-                  <div className="flex items-center justify-between border-b-2 border-zinc-600 bg-zinc-800 px-8 py-4">
+                    <div className="flex items-center justify-between" style={{borderBottom: '2px solid #94c83d', backgroundColor: '#94c83d', padding: '8px 8px 4px'}}>
                     <Dialog.Title as="h3" className="text-lg font-medium">
                       {title}
                     </Dialog.Title>

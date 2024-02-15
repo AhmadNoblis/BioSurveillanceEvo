@@ -5,12 +5,16 @@ import { CaretUp, CheckCircle } from "@phosphor-icons/react";
 import { MessageSet } from "@/lib/utils/sanitizeLogsDetails";
 import clsx from "clsx";
 import LoadingCircle from "../LoadingCircle";
+import { saveAs } from 'file-saver'; // Ensure file-saver is installed
+
+
 
 interface ChatDetailsProps {
   isOpen: boolean;
   onClose: () => void;
   logs: MessageSet;
   status?: string;
+  
 }
 
 export default function ChatDetails({
@@ -22,6 +26,18 @@ export default function ChatDetails({
   const [expandedStep, setExpandedStep] = useState<string | null>(null);
   const [initialToggle, setInitialToggle] = useState<boolean>(false);
   const contentRefs = useRef<{ [index: number]: HTMLDivElement | null }>({});
+
+
+  // Function to download chat details
+  const downloadChatDetails = () => {
+    const detailsContent = Object.entries(logs.details).map(([stepTitle, stepDetails]) => {
+      return `### ${stepTitle}\n\n${stepDetails.join('\n\n')}`;
+    }).join('\n\n');
+
+    const blob = new Blob([detailsContent], { type: 'text/markdown;charset=utf-8' });
+    saveAs(blob, "ChatDetails.md");
+  };
+
 
   const toggleStep = (step: string, index: number) => {
     const currentEl = contentRefs.current[index];
@@ -66,6 +82,16 @@ export default function ChatDetails({
       title="Details"
       panelStyles={{ maxWidth: "max-w-screen-md" }}
     >
+{/* Download Button */}
+<div className="flex justify-end p-2">
+  <button
+    onClick={downloadChatDetails}
+    className="prose prose-condensed prose-zinc prose-invert relative max-w-none rounded-md bg-zinc-300 shadow-md transition-colors duration-0 ease-in-out hover:shadow-lg hover:bg-zinc-500 cursor-pointer"
+  >
+    Download Details
+  </button>
+</div>
+
       <div className="space-y-2 md:space-y-2">
         {logs &&
           Object.entries(logs.details).map(
@@ -75,9 +101,9 @@ export default function ChatDetails({
                 <div key={stepTitle} className="space-y-2 md:space-y-4">
                   <div
                     className={clsx(
-                      "prose-condensed prose prose-zinc prose-invert relative max-w-none rounded-md bg-zinc-800 shadow-md transition-colors duration-0 ease-in-out hover:shadow-lg",
+                      "prose-condensed prose prose-zinc prose-invert relative max-w-none rounded-md bg-zinc-300 shadow-md transition-colors duration-0 ease-in-out hover:shadow-lg",
                       {
-                        "cursor-pointer duration-150 hover:bg-zinc-700":
+                        "cursor-pointer duration-150 hover:bg-zinc-500":
                           expandedStep !== stepTitle && stepDetails.length > 0,
                       }
                     )}
@@ -104,7 +130,7 @@ export default function ChatDetails({
                           weight="bold"
                           size={14}
                           className={clsx(
-                            "transform text-white transition-transform duration-500 ease-in-out group-hover:text-cyan-500",
+                            "transform text-white transition-transform duration-500 ease-in-out group-hover:text-zinc-800",
                             expandedStep !== stepTitle && "rotate-180"
                           )}
                         />
@@ -128,7 +154,7 @@ export default function ChatDetails({
                   {status &&
                     Object.keys(logs.details).length - 1 === index &&
                     !isGoal && (
-                      <div className="flex items-center space-x-2 text-cyan-500">
+                      <div className="flex items-center space-x-2 text-zinc-500">
                         <LoadingCircle />
                         <div>{status}</div>
                       </div>

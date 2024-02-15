@@ -570,10 +570,10 @@ const file2Csv = new InMemoryFile("file2.csv", encoder.encode(`Date	Description	
 `));
 
 export const examplePrompts: ExamplePrompt[]  = [
-  {
+  /*{
     prompt: "How much was spent on utilities within these CSVs? Write the result to a file.",
     files: [file1Csv, file2Csv]
-  },
-  { prompt: "How many people were born in the last US election year? Write the results to a file." },
-  { prompt: "Who are the two hosts of the Latent Space podcast? Write their names to a file." },
+  },*/
+  { prompt: "Can you look up recent disease/virus outbreaks in sub-saharan Africa, try to use local newspapers/journals" },
+  { prompt: "Can you look up recent disease/virus outbreaks in high-risk areas by using local newspapers/journals" },
 ];

@@ -47,7 +47,7 @@ function AccountConfig(props: AccountConfigProps) {
                 </div>
               </div>
             </div>
-            <div className="text-xs text-zinc-500">
+            <div className="space-x-2">
               <Button
                 className="!px-2 md:!px-4"
                 hierarchy="secondary"
@@ -60,13 +60,13 @@ function AccountConfig(props: AccountConfigProps) {
           </div>
         )}
         {!apiKey && (
-          <p className="text-zinc-500">
+          <p>
             {!!session?.user.email
               ? "Provide your own OpenAI key to get started with Evo."
               : "Provide your own OpenAI key and use Evo as a guest. As a guest, your sessions will not be saved."}
           </p>
         )}
-        <div className="text-xs text-zinc-500">
+        <div className="space-y-3">
           <TextField
             ref={apiKeyRef}
             value={apiKey ? apiKey : ""}
@@ -79,10 +79,10 @@ function AccountConfig(props: AccountConfigProps) {
             type="text"
           />
           {!apiKey && (
-            <div className="text-xs text-zinc-500">
+            <div className="text-xs text-zinc-400">
               Don't have an OpenAI key?
               <a
-                className="ml-1 text-zinc-500 underline transition-colors duration-300 hover:text-zinc-800"
+                className="ml-1 text-cyan-500 underline transition-colors duration-300 hover:text-white"
                 href="https://platform.openai.com/account/api-keys"
                 target="_blank"
                 rel="noredirect"
@@ -93,7 +93,19 @@ function AccountConfig(props: AccountConfigProps) {
           )}
         </div>
 
-
+        <div className="w-full space-y-1">
+          <h3 className="text-sm font-semibold">Data</h3>
+          <fieldset className="flex w-full items-center justify-between">
+            <label className="text-sm text-zinc-200">
+              Share prompts with Evo
+            </label>
+            <TextField
+              checked={telemetry}
+              onChange={(e) => setTelemetry(e.target.checked)}
+              type="checkbox"
+            />
+          </fieldset>
+        </div>
       </div>
     </>
   );

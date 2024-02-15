@@ -23,7 +23,12 @@ export const prompts = {
 
       5. Use scrape_text for getting all the text from a webpage, but not for searching for specific information.
       
-      6. RESPECT USER'S DESIRED FORMAT`,
+      6. RESPECT USER'S DESIRED FORMAT: So for biosurveillance, whenever you mention the amount of cases or a date please mention the source immediately after
+      information you provide without a web link or name of source is completely useless.
+      
+      7. If you are performing any biosurveillance please try to look for local sources and more recent outbreaks. Preferably in the past week or two.
+      8. Your final step should be ONLY to list out the outbreaks you find along a summary of them with the corresponding source where you found that information`
+      ,
     },
   ],
   runMessages: ({ goal }: GoalRunArgs): ChatMessage[] => [
