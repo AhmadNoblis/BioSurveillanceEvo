@@ -102,19 +102,35 @@ const specificRegionsCountries = [
 ];
 
 const generateCustomPrompts = () => {
-  let customizedPrompts: string[] = [];
-  specificDiseases.forEach((disease) => {
-    specificRegionsCountries.forEach((regionCountry) => {
-      prompts.forEach((prompt) => {
-        const customizedPrompt = prompt
-          .replace("[specific disease]", disease)
-          .replace("[specific region/country]", regionCountry);
+  let customizedPrompts = [];
+  prompts.forEach((prompt) => {
+    if (prompt.includes("[specific disease]")) {
+      specificDiseases.forEach((disease) => {
+        if (prompt.includes("[specific region/country]")) {
+          specificRegionsCountries.forEach((regionCountry) => {
+            const customizedPrompt = prompt
+              .replace("[specific disease]", disease)
+              .replace("[specific region/country]", regionCountry);
+            customizedPrompts.push(customizedPrompt);
+          });
+        } else {
+          const customizedPrompt = prompt.replace("[specific disease]", disease);
+          customizedPrompts.push(customizedPrompt);
+        }
+      });
+    } else if (prompt.includes("[specific region/country]")) {
+      specificRegionsCountries.forEach((regionCountry) => {
+        const customizedPrompt = prompt.replace("[specific region/country]", regionCountry);
         customizedPrompts.push(customizedPrompt);
       });
-    });
+    } else {
+      // If the prompt does not contain any placeholders, add it as is.
+      customizedPrompts.push(prompt);
+    }
   });
   return customizedPrompts;
 };
+
 
 
 useEffect(() => {
@@ -123,7 +139,7 @@ useEffect(() => {
     const intervalId = setInterval(() => {
       onGoalSubmit(customPrompts[currentPromptIndex]);
       setCurrentPromptIndex((prevIndex) => (prevIndex + 1) % customPrompts.length);
-    }, 30000); // Adjust the time as needed
+    }, 3000); // Adjust the time as needed
 
     return () => clearInterval(intervalId);
   }
@@ -212,6 +228,7 @@ useEffect(() => {
           {/* Control buttons for starting and stopping the cycling process */}
           <Button onClick={startCyclingPrompts} disabled={isCycling}>Start Cycling</Button>
           <Button onClick={stopCycling} disabled={!isCycling}>Stop Cycling</Button>
+
         </div>
       </div>
       <Disclaimer

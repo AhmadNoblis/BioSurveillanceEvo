@@ -78,7 +78,7 @@ function Dojo({ params }: { params: { id?: string } }) {
 
   const handleGoalSubmit = async (goal: string): Promise<void> => {
     if (isStarting || isRunning) {
-      setError("Goal is already in progress.");
+      // setError("Goal is already in progress.");
       return;
     }
 
