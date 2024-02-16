@@ -76,6 +76,14 @@ code {
 .prose :where(a):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
   color: black;
 }
+/* In your global.css or component-specific CSS file */
+.save-button {
+  background-color: #94c83d; /* Normal state */
+}
+.save-button:hover {
+  background-color: #82b334; /* Slightly darker for hover state, adjust as needed */
+}
+
 
 
 ::-webkit-scrollbar {
