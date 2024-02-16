@@ -74,7 +74,7 @@ const Chat: React.FC<ChatProps> = ({
     "Social Media Monitoring for Disease Outbreaks: \"Monitor social media for mentions of symptoms or outbreaks related to [specific disease] in [specific region/country].\"",
     "Environmental Factors in Disease Spread: \"Identify reports on environmental factors contributing to the spread of [specific disease].\"",
     "Pharmaceutical and Therapeutic Developments: \"Find the latest developments in pharmaceuticals and therapeutics for treating [specific disease].\"",
-    "Outbreak Response and Containment Efforts: \"Search for information on outbreak response and containment efforts for [specific disease] by [specific organization or country].\""
+    "Outbreak Response and Containment Efforts: \"Search for information on outbreak response and containment efforts for [specific disease] by [specific region/country].\""
 ];
 
 const specificDiseases = [
@@ -100,6 +100,8 @@ const specificRegionsCountries = [
   "Nigeria",
   "Russia",
 ];
+
+
 
 const generateCustomPrompts = () => {
   let customizedPrompts = [];
