@@ -325,32 +325,7 @@ const Sidebar = ({
               ) : (
                 <div className="h-12 w-full animate-pulse rounded-lg bg-zinc-700" />
               )}
-              <div className="flex items-center space-x-1 text-lg text-white">
-                <Button
-                  variant="icon"
-                  onClick={() => {
-                    window.open(
-                      "https://discord.gg/r3rwh69cCa",
-                      "_blank",
-                      "noopener noreferrer"
-                    );
-                  }}
-                >
-                  <DiscordLogo size={0} />
-                </Button>
-                <Button
-                  variant="icon"
-                  onClick={() => {
-                    window.open(
-                      "https://github.com/polywrap/evo.ninja",
-                      "_blank",
-                      "noopener noreferrer"
-                    );
-                  }}
-                >
-                  <GithubLogo size={0} />
-                </Button>
-              </div>
+
             </div>
           </div>
         </div>
