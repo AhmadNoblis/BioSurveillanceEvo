@@ -62,7 +62,7 @@ export default function WelcomeModal(props: WelcomeModalProps) {
 
 
 
-          {/*<div className="space-y-6 border-b-2 border-zinc-700 pb-8">
+          *<div className="space-y-6 border-b-2 border-zinc-700 pb-8">
             <p>Sign in below to save your sessions</p>
             <div className="space-y-2">
               <Button
@@ -92,7 +92,7 @@ export default function WelcomeModal(props: WelcomeModalProps) {
                 <div>Sign in with Google</div>
               </Button>
             </div>
-          </div>*/}
+          </div>
         </>
       )}
       <AccountConfig

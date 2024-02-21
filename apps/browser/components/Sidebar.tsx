@@ -31,7 +31,16 @@ export interface SidebarProps {
   sidebarOpen: boolean;
   closeSidebar: () => void;
 }
-
+const simulatedSession = {
+  data: {
+    user: {
+      name: "John Doe",
+      email: "johndoe@example.com",
+      image: "/path/to/image.jpg", // Optional: Provide a path if you want to display an image
+    },
+  },
+  status: "authenticated", // Simulate an authenticated status
+};
 const Sidebar = ({
   sidebarOpen,
   hoveringSidebarButton,
@@ -39,7 +48,7 @@ const Sidebar = ({
 }: SidebarProps) => {
   const router = useRouter();
   const { data: chats, isLoading: isLoadingChats } = useChats();
-  const { data: session, status } = useSession();
+  const { data: session, status } = simulatedSession;
   const { isMobile } = useWindowSize();
 
   const [editChat, setEditChat] = useState<{ id: string; title: string }>();
