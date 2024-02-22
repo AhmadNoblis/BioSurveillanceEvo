@@ -75,10 +75,10 @@ const TextField = ({
           )}
           <input
             className={clsx(
-              "focus:ring-3 w-full rounded-lg border-2 border-zinc-500 bg-transparent p-4 text-sm text-zinc-100 outline-none transition-all placeholder:text-zinc-500/40 focus:border-zinc-500 focus:ring-zinc-500/20",
+              "focus:ring-3 w-full rounded-lg border-2 border-zinc-500 bg-transparent p-4 text-sm text-zinc-500 outline-none transition-all placeholder:text-zinc-500/40 focus:border-zinc-500 focus:ring-zinc-500/20",
               props.disabled
                 ? "cursor-default opacity-50"
-                : "cursor-text hover:border-zinc-500 hover:bg-zinc-500",
+                : "cursor-text hover:border-zinc-500 hover:bg-zinc-100",
               { "border-red-500": error },
               { "!pl-10": leftAdornment },
               { "!pr-10": rightAdornment },
