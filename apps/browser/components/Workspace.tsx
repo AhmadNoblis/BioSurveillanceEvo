@@ -58,12 +58,12 @@ function Workspace({ onUpload }: WorkspaceProps) {
           <input {...getInputProps()} />
           {workspaceFiles.length !== 0 && (
             <Button
-              variant="icon"
-              style={{ color: "#D9E2EC" }} // Zinc-100 color hex code
-              onClick={downloadFilesAsZip}
-            >
-              <DownloadSimple size={18} weight="bold" />
-            </Button>
+            variant="icon"
+            style={{ color: "#D9E2EC" }} // Zinc-100 color hex code
+            onClick={downloadFilesAsZip}
+          >
+            <DownloadSimple size={18} weight="bold" />
+          </Button>
 
           )}
         </div>

@@ -31,7 +31,16 @@ export interface SidebarProps {
   sidebarOpen: boolean;
   closeSidebar: () => void;
 }
-
+const simulatedSession = {
+  data: {
+    user: {
+      name: "John Doe",
+      email: "johndoe@example.com",
+      image: "/path/to/image.jpg", // Optional: Provide a path if you want to display an image
+    },
+  },
+  status: "authenticated", // Simulate an authenticated status
+};
 const Sidebar = ({
   sidebarOpen,
   hoveringSidebarButton,
@@ -166,11 +175,11 @@ const Sidebar = ({
               {session?.user.email && (
                 <div className="space-y-1 px-2">
                   <div className="flex w-full items-center justify-between space-x-1 px-3">
-                    <div className="text-xs uppercase tracking-widest text-zinc-500">
+                    <div className="text-xs uppercase tracking-widest text-zinc-100">
                       Recent Chats
                     </div>
                     {!isLoadingChats && (
-                      <Button variant="icon" onClick={handleCreateNewChat}>
+                      <Button variant="icon" onClick={handleCreateNewChat} style={{color:'#D9E2EC'}}>
                         <NotePencil size={18} weight="bold" />
                       </Button>
                     )}
@@ -186,12 +195,12 @@ const Sidebar = ({
                               className={clsx(
                                 "relative w-full cursor-pointer overflow-x-hidden text-ellipsis whitespace-nowrap rounded p-1 text-sm text-zinc-100 transition-colors duration-300",
                                 {
-                                  "bg-zinc-700 pr-14":
+                                  "bg-zinc-500 pr-14":
                                     chat.id === activeChat &&
                                     chat.id !== editChat?.id,
                                 },
                                 {
-                                  "hover:bg-zinc-700 hover:text-white":
+                                  "hover:bg-zinc-500 hover:text-white":
                                     chat.id !== editChat?.id,
                                 }
                               )}
@@ -202,7 +211,7 @@ const Sidebar = ({
                               {chat.id === editChat?.id ? (
                                 <div ref={editTitleInputRef}>
                                   <TextField
-                                    className="!border-none !p-1 focus:!bg-zinc-950"
+                                    className="!border-none !p-1 focus:!bg-zinc-500"
                                     defaultValue={chat.name}
                                     onKeyDown={async (e) => {
                                       if (e.key === "Enter") {
@@ -325,32 +334,7 @@ const Sidebar = ({
               ) : (
                 <div className="h-12 w-full animate-pulse rounded-lg bg-zinc-700" />
               )}
-              <div className="flex items-center space-x-1 text-lg text-white">
-                <Button
-                  variant="icon"
-                  onClick={() => {
-                    window.open(
-                      "https://discord.gg/r3rwh69cCa",
-                      "_blank",
-                      "noopener noreferrer"
-                    );
-                  }}
-                >
-                  <DiscordLogo size={0} />
-                </Button>
-                <Button
-                  variant="icon"
-                  onClick={() => {
-                    window.open(
-                      "https://github.com/polywrap/evo.ninja",
-                      "_blank",
-                      "noopener noreferrer"
-                    );
-                  }}
-                >
-                  <GithubLogo size={0} />
-                </Button>
-              </div>
+
             </div>
           </div>
         </div>

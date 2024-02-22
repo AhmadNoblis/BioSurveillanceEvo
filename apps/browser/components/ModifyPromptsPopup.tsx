@@ -78,15 +78,19 @@ const ModifyPromptsPopup: React.FC<ModifyPromptsPopupProps> = ({ isOpen, onClose
         <Dropdown label="Prompts" options={promptsOptions} selectedOptions={selectedPrompts} onChange={setSelectedPrompts} />
         <Dropdown label="Diseases" options={diseasesOptions} selectedOptions={selectedDiseases} onChange={setSelectedDiseases} />
         <Dropdown label="Regions/Countries" options={regionsOptions} selectedOptions={selectedRegions} onChange={setSelectedRegions} />
-        <div className="flex justify-end border-t border-gray-200 mt-6 pt-4">
-        <button onClick={handleSaveChanges} className="py-2 px-4 save-button text-white rounded transition">
-          Save Changes
-        </button>
-
+        <div className="flex justify-between border-t border-gray-200 mt-6 pt-4">
+          <button onClick={onClose} className="py-2 px-4 cancel-button bg-red-500 text-white rounded transition">
+            Cancel
+          </button>
+          <button onClick={handleSaveChanges} className="py-2 px-4 save-button bg-green-500 text-white rounded transition">
+            Save Changes
+          </button>
         </div>
       </div>
     </div>
   );
+  
+  
 };
   
 export default ModifyPromptsPopup;
