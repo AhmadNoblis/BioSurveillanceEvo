@@ -48,7 +48,7 @@ const Sidebar = ({
 }: SidebarProps) => {
   const router = useRouter();
   const { data: chats, isLoading: isLoadingChats } = useChats();
-  const { data: session, status } = simulatedSession;
+  const { data: session, status } = useSession();
   const { isMobile } = useWindowSize();
 
   const [editChat, setEditChat] = useState<{ id: string; title: string }>();
@@ -175,11 +175,11 @@ const Sidebar = ({
               {session?.user.email && (
                 <div className="space-y-1 px-2">
                   <div className="flex w-full items-center justify-between space-x-1 px-3">
-                    <div className="text-xs uppercase tracking-widest text-zinc-500">
+                    <div className="text-xs uppercase tracking-widest text-zinc-100">
                       Recent Chats
                     </div>
                     {!isLoadingChats && (
-                      <Button variant="icon" onClick={handleCreateNewChat}>
+                      <Button variant="icon" onClick={handleCreateNewChat} style={{color:'#D9E2EC'}}>
                         <NotePencil size={18} weight="bold" />
                       </Button>
                     )}
@@ -195,12 +195,12 @@ const Sidebar = ({
                               className={clsx(
                                 "relative w-full cursor-pointer overflow-x-hidden text-ellipsis whitespace-nowrap rounded p-1 text-sm text-zinc-100 transition-colors duration-300",
                                 {
-                                  "bg-zinc-700 pr-14":
+                                  "bg-zinc-500 pr-14":
                                     chat.id === activeChat &&
                                     chat.id !== editChat?.id,
                                 },
                                 {
-                                  "hover:bg-zinc-700 hover:text-white":
+                                  "hover:bg-zinc-500 hover:text-white":
                                     chat.id !== editChat?.id,
                                 }
                               )}
@@ -211,7 +211,7 @@ const Sidebar = ({
                               {chat.id === editChat?.id ? (
                                 <div ref={editTitleInputRef}>
                                   <TextField
-                                    className="!border-none !p-1 focus:!bg-zinc-950"
+                                    className="!border-none !p-1 focus:!bg-zinc-500"
                                     defaultValue={chat.name}
                                     onKeyDown={async (e) => {
                                       if (e.key === "Enter") {
