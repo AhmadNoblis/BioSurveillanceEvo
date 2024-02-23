@@ -59,8 +59,8 @@ const Chat: React.FC<ChatProps> = ({
   const [currentPromptIndex, setCurrentPromptIndex] = useState(0);
   const [showModifyPrompts, setShowModifyPrompts] = useState(false);
 
-  const generateCustomPrompts = () => {
-    let customizedPrompts = [];
+  const generateCustomPrompts = (): string[] => {
+    let customizedPrompts: string[] = [];
     prompts.forEach((prompt) => {
       if (prompt.includes("[specific disease]")) {
         specificDiseases.forEach((disease) => {
