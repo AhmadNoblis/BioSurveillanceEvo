@@ -261,13 +261,13 @@ const Sidebar = ({
                       ) : (
                         <div
                           onClick={handleCreateNewChat}
-                          className="mt-1 flex cursor-pointer flex-col items-center justify-center space-y-2 rounded-lg border-2 border-dashed border-zinc-500 p-7 text-center transition-colors duration-300 hover:border-cyan-500 hover:bg-zinc-950 hover:text-cyan-500"
+                          className="mt-1 flex cursor-pointer flex-col items-center justify-center space-y-2 rounded-lg border-2 border-dashed border-zinc-500 p-7 text-center transition-colors duration-300 hover:border-zinc-100 hover:bg-zinc-500 hover:text-zinc-100"
                         >
                           <NotePencil
                             size={24}
-                            className="text-[currentColor]"
+                            className="text-zinc-100"
                           />
-                          <p className="leading-regular text-xs text-zinc-500">
+                          <p className="leading-regular text-xs text-zinc-100">
                             You currently have no chats.
                           </p>
                         </div>
