@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import promptsData from "./prompts.json";
 
 interface DropdownProps {
   label: string;
@@ -54,10 +55,11 @@ const ModifyPromptsPopup: React.FC<ModifyPromptsPopupProps> = ({ isOpen, onClose
   const [selectedDiseases, setSelectedDiseases] = useState<string[]>([]);
   const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
 
+
   // Dummy options for demonstration
-  const promptsOptions = initialData.prompts.map((prompt: string) => ({ label: prompt, value: prompt }));
-  const diseasesOptions = initialData.diseases.map((disease: string) => ({ label: disease, value: disease }));
-  const regionsOptions = initialData.regionsCountries.map((region: string) => ({ label: region, value: region }));
+  const promptsOptions = promptsData.prompts.map((prompt: string) => ({ label: prompt, value: prompt }));
+  const diseasesOptions = promptsData.specificDiseases.map((disease: string) => ({ label: disease, value: disease }));
+  const regionsOptions = promptsData.specificRegionsCountries.map((region: string) => ({ label: region, value: region }));
 
   if (!isOpen) {
     return null;

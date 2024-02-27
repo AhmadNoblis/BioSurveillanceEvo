@@ -20,7 +20,7 @@ import TextField from "@/components/TextField";
 import { UploadSimple } from "@phosphor-icons/react";
 import clsx from "clsx";
 import { InMemoryFile } from "@nerfzael/memory-fs";
-import { prompts, specificDiseases, specificRegionsCountries } from "./prompts";
+import promptsData from "./prompts.json"; // Import the JSON data
 import ModifyPromptsPopup from './ModifyPromptsPopup';
 
 export interface ChatLog {
@@ -59,13 +59,15 @@ const Chat: React.FC<ChatProps> = ({
   const [currentPromptIndex, setCurrentPromptIndex] = useState(0);
   const [showModifyPrompts, setShowModifyPrompts] = useState(false);
 
+
+  
   const generateCustomPrompts = (): string[] => {
     let customizedPrompts: string[] = [];
-    prompts.forEach((prompt) => {
+    promptsData.prompts.forEach((prompt) => {
       if (prompt.includes("[specific disease]")) {
-        specificDiseases.forEach((disease) => {
+        promptsData.specificDiseases.forEach((disease) => {
           if (prompt.includes("[specific region/country]")) {
-            specificRegionsCountries.forEach((regionCountry) => {
+            promptsData.specificRegionsCountries.forEach((regionCountry) => {
               const customizedPrompt = prompt
                 .replace("[specific disease]", disease)
                 .replace("[specific region/country]", regionCountry);
@@ -77,7 +79,7 @@ const Chat: React.FC<ChatProps> = ({
           }
         });
       } else if (prompt.includes("[specific region/country]")) {
-        specificRegionsCountries.forEach((regionCountry) => {
+        promptsData.specificRegionsCountries.forEach((regionCountry) => {
           const customizedPrompt = prompt.replace("[specific region/country]", regionCountry);
           customizedPrompts.push(customizedPrompt);
         });
@@ -173,7 +175,16 @@ const Chat: React.FC<ChatProps> = ({
         </div>
       </div>
       <Disclaimer isOpen={showDisclaimer && !welcomeModalOpen && !signInModalOpen && !settingsModalOpen} onClose={() => setShowDisclaimer(false)} />
-      {showModifyPrompts && <ModifyPromptsPopup isOpen={showModifyPrompts} onClose={() => setShowModifyPrompts(false)} onSave={(modifiedData) => { console.log(modifiedData); setShowModifyPrompts(false); }} initialData={{ prompts, diseases: specificDiseases, regionsCountries: specificRegionsCountries, }} />}
+      {showModifyPrompts && <ModifyPromptsPopup 
+  isOpen={showModifyPrompts} 
+  onClose={() => setShowModifyPrompts(false)} 
+  onSave={(modifiedData) => { console.log(modifiedData); setShowModifyPrompts(false); }} 
+  initialData={{
+    prompts: promptsData.prompts, 
+    diseases: promptsData.specificDiseases, 
+    regionsCountries: promptsData.specificRegionsCountries,
+  }} 
+/>}
     </main>
   );
 };

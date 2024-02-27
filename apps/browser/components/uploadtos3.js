@@ -15,7 +15,7 @@ const s3 = new AWS.S3();
 const uploadFileToS3 = async (bucketName, fileName, fileContent) => {
   const params = {
     Bucket: bucketName,
-    Key: "middleware.ts", // File name you want to save as
+    Key: fileName, // File name you want to save as
     Body: fileContent
   };
 
