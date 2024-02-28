@@ -22,6 +22,9 @@ import clsx from "clsx";
 import { InMemoryFile } from "@nerfzael/memory-fs";
 import promptsData from "./prompts.json"; // Import the JSON data
 import ModifyPromptsPopup from './ModifyPromptsPopup';
+import MyLogo from './biohazard_symbol.svg.png';
+
+
 
 export interface ChatLog {
   title: string;
@@ -138,11 +141,23 @@ const Chat: React.FC<ChatProps> = ({
 
   return (
     <main className={clsx("relative flex h-full w-full flex-col", {"items-center justify-center": shouldShowExamplePrompts})}>
-      {shouldShowExamplePrompts ? (
-        <Logo wordmark={false} className="mb-16 w-16" />
-      ) : (
-        <ChatLogs status={status} chatName={chatName ?? "New Session"} isRunning={isStarting || isRunning} logs={logs} />
-      )}
+      {/* start of code for logo */}
+
+      {shouldShowExamplePrompts && (
+    <>
+      <div className="w-full flex justify-center items-center mt-4">
+        <img src={MyLogo.src} alt="Logo" className="w-20 h-20" />
+      </div>
+      <Logo wordmark={false} className="mb-4 w-16" />
+    </>
+  )}
+
+  {/* Render ChatLogs when not showing example prompts */}
+  {!shouldShowExamplePrompts && (
+    <ChatLogs status={status} chatName={chatName ?? "New Session"} isRunning={isStarting || isRunning} logs={logs} />
+  )}
+      
+      {/*end of code for logo*/}
       <div className={clsx("mt-4 flex w-full space-y-4", shouldShowExamplePrompts ? "flex-col-reverse space-y-reverse px-4 md:px-8 lg:px-4" : "mx-auto max-w-[56rem] flex-col px-4")}>
         {shouldShowExamplePrompts && <ExamplePrompts onClick={handleGoalSubmit} />}
         <div className={clsx("mb-4 flex w-full items-center justify-center gap-4 self-center", shouldShowExamplePrompts ? "max-w-[60rem]" : "max-w-[56rem]")}>
@@ -157,7 +172,7 @@ const Chat: React.FC<ChatProps> = ({
                 event.preventDefault(); // Prevent default to avoid any form submission behavior
               }
             }}
-              placeholder="Search up emerging diseases or potential outbreaks"
+              placeholder="Find, track, and discover emerging infectious disease outbreaks"
             className="!rounded-lg !p-4 !pl-12"
             leftAdornment={
               <>

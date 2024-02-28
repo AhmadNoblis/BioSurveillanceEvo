@@ -13,7 +13,7 @@ import { Metadata } from "next";
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
-  title: "BioSurveillance LLM",
+  title: "BioSurveillance LLM"
 }
 
 
