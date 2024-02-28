@@ -13,8 +13,9 @@ import { Metadata } from "next";
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
-  title: "evo.ninja"
+  title: "BioSurveillance LLM"
 }
+
 
 export default function EvoApp({ children }: { children: React.ReactNode }) {
   const currentDevice = cookies().get("X-User-Device");

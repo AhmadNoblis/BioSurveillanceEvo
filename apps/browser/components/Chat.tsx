@@ -20,8 +20,11 @@ import TextField from "@/components/TextField";
 import { UploadSimple } from "@phosphor-icons/react";
 import clsx from "clsx";
 import { InMemoryFile } from "@nerfzael/memory-fs";
-import { prompts, specificDiseases, specificRegionsCountries } from "./prompts";
+import promptsData from "./prompts.json"; // Import the JSON data
 import ModifyPromptsPopup from './ModifyPromptsPopup';
+import MyLogo from './biohazard_symbol.svg.png';
+
+
 
 export interface ChatLog {
   title: string;
@@ -59,13 +62,15 @@ const Chat: React.FC<ChatProps> = ({
   const [currentPromptIndex, setCurrentPromptIndex] = useState(0);
   const [showModifyPrompts, setShowModifyPrompts] = useState(false);
 
-  const generateCustomPrompts = () => {
-    let customizedPrompts = [];
-    prompts.forEach((prompt) => {
+
+  
+  const generateCustomPrompts = (): string[] => {
+    let customizedPrompts: string[] = [];
+    promptsData.prompts.forEach((prompt) => {
       if (prompt.includes("[specific disease]")) {
-        specificDiseases.forEach((disease) => {
+        promptsData.specificDiseases.forEach((disease) => {
           if (prompt.includes("[specific region/country]")) {
-            specificRegionsCountries.forEach((regionCountry) => {
+            promptsData.specificRegionsCountries.forEach((regionCountry) => {
               const customizedPrompt = prompt
                 .replace("[specific disease]", disease)
                 .replace("[specific region/country]", regionCountry);
@@ -77,7 +82,7 @@ const Chat: React.FC<ChatProps> = ({
           }
         });
       } else if (prompt.includes("[specific region/country]")) {
-        specificRegionsCountries.forEach((regionCountry) => {
+        promptsData.specificRegionsCountries.forEach((regionCountry) => {
           const customizedPrompt = prompt.replace("[specific region/country]", regionCountry);
           customizedPrompts.push(customizedPrompt);
         });
@@ -136,11 +141,23 @@ const Chat: React.FC<ChatProps> = ({
 
   return (
     <main className={clsx("relative flex h-full w-full flex-col", {"items-center justify-center": shouldShowExamplePrompts})}>
-      {shouldShowExamplePrompts ? (
-        <Logo wordmark={false} className="mb-16 w-16" />
-      ) : (
-        <ChatLogs status={status} chatName={chatName ?? "New Session"} isRunning={isStarting || isRunning} logs={logs} />
-      )}
+      {/* start of code for logo */}
+
+      {shouldShowExamplePrompts && (
+    <>
+      <div className="w-full flex justify-center items-center mt-4">
+        <img src={MyLogo.src} alt="Logo" className="w-20 h-20" />
+      </div>
+      <Logo wordmark={false} className="mb-4 w-16" />
+    </>
+  )}
+
+  {/* Render ChatLogs when not showing example prompts */}
+  {!shouldShowExamplePrompts && (
+    <ChatLogs status={status} chatName={chatName ?? "New Session"} isRunning={isStarting || isRunning} logs={logs} />
+  )}
+      
+      {/*end of code for logo*/}
       <div className={clsx("mt-4 flex w-full space-y-4", shouldShowExamplePrompts ? "flex-col-reverse space-y-reverse px-4 md:px-8 lg:px-4" : "mx-auto max-w-[56rem] flex-col px-4")}>
         {shouldShowExamplePrompts && <ExamplePrompts onClick={handleGoalSubmit} />}
         <div className={clsx("mb-4 flex w-full items-center justify-center gap-4 self-center", shouldShowExamplePrompts ? "max-w-[60rem]" : "max-w-[56rem]")}>
@@ -155,7 +172,7 @@ const Chat: React.FC<ChatProps> = ({
                 event.preventDefault(); // Prevent default to avoid any form submission behavior
               }
             }}
-              placeholder="Search up emerging diseases or potential outbreaks"
+              placeholder="Find, track, and discover emerging infectious disease outbreaks"
             className="!rounded-lg !p-4 !pl-12"
             leftAdornment={
               <>
@@ -173,7 +190,16 @@ const Chat: React.FC<ChatProps> = ({
         </div>
       </div>
       <Disclaimer isOpen={showDisclaimer && !welcomeModalOpen && !signInModalOpen && !settingsModalOpen} onClose={() => setShowDisclaimer(false)} />
-      {showModifyPrompts && <ModifyPromptsPopup isOpen={showModifyPrompts} onClose={() => setShowModifyPrompts(false)} onSave={(modifiedData) => { console.log(modifiedData); setShowModifyPrompts(false); }} initialData={{ prompts, diseases: specificDiseases, regionsCountries: specificRegionsCountries, }} />}
+      {showModifyPrompts && <ModifyPromptsPopup 
+  isOpen={showModifyPrompts} 
+  onClose={() => setShowModifyPrompts(false)} 
+  onSave={(modifiedData) => { console.log(modifiedData); setShowModifyPrompts(false); }} 
+  initialData={{
+    prompts: promptsData.prompts, 
+    diseases: promptsData.specificDiseases, 
+    regionsCountries: promptsData.specificRegionsCountries,
+  }} 
+/>}
     </main>
   );
 };

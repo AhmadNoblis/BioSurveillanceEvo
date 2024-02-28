@@ -574,6 +574,7 @@ export const examplePrompts: ExamplePrompt[]  = [
     prompt: "How much was spent on utilities within these CSVs? Write the result to a file.",
     files: [file1Csv, file2Csv]
   },*/
-  { prompt: "Can you look up recent disease/virus outbreaks in sub-saharan Africa, try to use local newspapers/journals" },
-  { prompt: "Can you look up recent disease/virus outbreaks in high-risk areas by using local newspapers/journals" },
+  { prompt: "Find the most recent Marburg Virus Disease outbreak and report the final case count, case fatality rate, country, and other relevant epidemiological information related to the outbreak" },
+  { prompt: "Examine recent HPAI H5N1 avian influenza outbreaks, focusing on geographic spread, cross-species transmission to humans, and prevention strategies"},
+  { prompt:"Detail recent chemical attacks in conflict zones, including agent types, delivery mechanisms, and civilian impact"}
 ];
