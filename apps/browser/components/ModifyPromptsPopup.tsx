@@ -27,14 +27,17 @@ const Dropdown: React.FC<DropdownProps> = ({ label, options, selectedOptions, on
         {label}
       </button>
       {isOpen && (
-        <ul className="absolute left-0 right-0 bg-white border border-gray-200 mt-1 rounded-md z-10">
-          {options.map((option) => (
-            <li
-              key={option.value}
-              className={`p-2 hover:bg-gray-100 cursor-pointer ${selectedOptions.includes(option.value) ? "bg-gray-200" : ""}`}
-              onClick={() => toggleSelection(option.value)}
-            >
-              {option.label}
+  <ul
+  className="absolute left-0 right-0 bg-white border border-gray-200 mt-1 rounded-md z-10"
+  style={{ maxHeight: '200px', overflowY: 'auto' }} // Set a max height and enable scrolling
+>
+  {options.map((option) => (
+    <li
+      key={option.value}
+      className={`p-2 hover:bg-gray-100 cursor-pointer ${selectedOptions.includes(option.value) ? "bg-gray-200" : ""}`}
+      onClick={() => toggleSelection(option.value)}
+    >
+      {option.label}
             </li>
           ))}
         </ul>
