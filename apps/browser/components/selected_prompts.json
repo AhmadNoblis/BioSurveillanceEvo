@@ -1,0 +1,17 @@
+{
+  "selectedPrompts": [
+    "Disease Surveillance Updates: \"Search for recent updates on disease surveillance from public health agencies worldwide.\"",
+    "Latest Outbreak Reports: \"Find the latest reports on disease outbreaks by health organizations.\"",
+    "Vaccine Efficacy and Coverage: \"Retrieve latest findings on vaccine efficacy against [specific disease] and current vaccination coverage rates in [specific region/country].\""
+  ],
+  "selectedDiseases": [
+    "Zika virus",
+    "Malaria",
+    "Ebola"
+  ],
+  "selectedRegions": [
+    "India",
+    "China",
+    "South Africa"
+  ]
+}
