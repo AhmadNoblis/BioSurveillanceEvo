@@ -72,8 +72,11 @@ const ModifyPromptsPopup: React.FC<ModifyPromptsPopupProps> = ({ isOpen, onClose
 
   const handleSaveChanges = () => {
     console.log('Save Changes clicked');
-    const data = { selectedPrompts, selectedDiseases, selectedRegions };
-  
+    const data = {
+      prompts: selectedPrompts,
+      specificDiseases: selectedDiseases,
+      specificRegionsCountries: selectedRegions
+    };  
     fetch('http://localhost:3001/save-selected-prompts', {
       method: 'POST',
       headers: {

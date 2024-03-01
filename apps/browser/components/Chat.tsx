@@ -20,7 +20,7 @@ import TextField from "@/components/TextField";
 import { UploadSimple } from "@phosphor-icons/react";
 import clsx from "clsx";
 import { InMemoryFile } from "@nerfzael/memory-fs";
-import promptsData from "./prompts.json"; // Import the JSON data
+import promptsData from "./selected_prompts.json"; // Import the JSON data
 import ModifyPromptsPopup from './ModifyPromptsPopup';
 import MyLogo from './biohazard_symbol.svg.png';
 
