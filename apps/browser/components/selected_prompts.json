@@ -1,7 +1,6 @@
 {
   "prompts": [
-    "Latest Outbreak Reports: \"Find the latest reports on disease outbreaks by health organizations.\"",
-    "Epidemiological Studies: \"Find newly published epidemiological studies on [specific disease].\""
+    "Social Media Monitoring for Disease Outbreaks: \"Monitor social media for mentions of symptoms or outbreaks related to [specific disease] in [specific region/country].\""
   ],
   "specificDiseases": [
     "Zika virus",
