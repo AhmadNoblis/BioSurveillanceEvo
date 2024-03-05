@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-import { useAtom } from "jotai";
 import {
   showDisclaimerAtom,
   errorAtom,
@@ -17,13 +15,14 @@ import Logo from "@/components/Logo";
 import Button from "@/components/Button";
 import ChatInputButton from "@/components/ChatInputButton";
 import TextField from "@/components/TextField";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import { UploadSimple } from "@phosphor-icons/react";
+import { useAtom } from "jotai";
 import clsx from "clsx";
 import { InMemoryFile } from "@nerfzael/memory-fs";
-import promptsData from "./prompts.json"; // Import the JSON data
+import promptsData from "./selected_prompts.json"; // Import the JSON data
 import ModifyPromptsPopup from './ModifyPromptsPopup';
 import MyLogo from './biohazard_symbol.svg.png';
-
 
 
 export interface ChatLog {
@@ -31,14 +30,14 @@ export interface ChatLog {
   content?: string;
   user: string;
   color?: string;
-  created_at?: string;
+  created_at?: string
 }
 
 export interface ChatProps {
   logs: ChatLog[];
   isStarting: boolean;
   isRunning: boolean;
-  onGoalSubmit: (goal: string) => void;
+  onGoalSubmit: (goal: string) => Promise<void>;
   onUpload: (upload: InMemoryFile[]) => void;
   status: string | undefined;
 }
@@ -49,21 +48,25 @@ const Chat: React.FC<ChatProps> = ({
   isRunning,
   onGoalSubmit,
   onUpload,
-  status,
+  status
 }: ChatProps) => {
   const [{ id: chatId, name: chatName }] = useAtom(chatInfoAtom);
   const [showDisclaimer, setShowDisclaimer] = useAtom(showDisclaimerAtom);
   const [, setError] = useAtom(errorAtom);
   const [welcomeModalOpen, setWelcomeModalOpen] = useAtom(welcomeModalAtom);
-  const [signInModalOpen, setSignInModalOpen] = useAtom(signInModalAtom);
-  const [settingsModalOpen, setSettingsModalOpen] = useAtom(settingsModalAtom);
+  const [signInModalOpen] = useAtom(signInModalAtom);
+  const [settingsModalOpen] = useAtom(settingsModalAtom)
+
   const [message, setMessage] = useState<string>("");
+
+  const { getInputProps, open } = useWorkspaceUploadDrop(onUpload);
+  const firstTimeUser = useFirstTimeUser();
+
+  const shouldShowExamplePrompts = !chatId || (!logs.length && !isStarting && !isRunning);
+
   const [isCycling, setIsCycling] = useState(false);
   const [currentPromptIndex, setCurrentPromptIndex] = useState(0);
   const [showModifyPrompts, setShowModifyPrompts] = useState(false);
-
-
-  
   const generateCustomPrompts = (): string[] => {
     let customizedPrompts: string[] = [];
     promptsData.prompts.forEach((prompt) => {
@@ -112,9 +115,7 @@ const Chat: React.FC<ChatProps> = ({
     setIsCycling(false);
   };
 
-  const { getInputProps, open } = useWorkspaceUploadDrop(onUpload);
-  const firstTimeUser = useFirstTimeUser();
-  const shouldShowExamplePrompts = !chatId || (!logs.length && !isStarting && !isRunning);
+
 
   const handleGoalSubmit = async (goal: string): Promise<void> => {
     if (firstTimeUser) {
@@ -125,8 +126,6 @@ const Chat: React.FC<ChatProps> = ({
       setError("Please enter a goal.");
       return;
     }
-    onGoalSubmit(goal);
-
     setMessage("");
     return onGoalSubmit(goal);
   };
@@ -137,7 +136,7 @@ const Chat: React.FC<ChatProps> = ({
       return;
     }
     open();
-  };
+  }
 
   return (
     <main className={clsx("relative flex h-full w-full flex-col", {"items-center justify-center": shouldShowExamplePrompts})}>
@@ -166,10 +165,8 @@ const Chat: React.FC<ChatProps> = ({
             value={message}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setMessage(event.target.value);}}
             onKeyDown={(event: React.KeyboardEvent) => {
-              if (event.key === "Enter" && !isStarting && !isRunning && message.trim() !== "") {
-                // Use handleGoalSubmit to ensure consistent handling and resetting of the message
-                handleGoalSubmit(message);
-                event.preventDefault(); // Prevent default to avoid any form submission behavior
+              if (event.key === "Enter" && !isStarting && !isRunning) {
+                return handleGoalSubmit(message);
               }
             }}
               placeholder="Find, track, and discover emerging infectious disease outbreaks"

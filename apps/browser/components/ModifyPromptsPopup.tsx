@@ -1,3 +1,5 @@
+
+
 import React, { useState } from 'react';
 import promptsData from "./prompts.json";
 
@@ -27,14 +29,17 @@ const Dropdown: React.FC<DropdownProps> = ({ label, options, selectedOptions, on
         {label}
       </button>
       {isOpen && (
-        <ul className="absolute left-0 right-0 bg-white border border-gray-200 mt-1 rounded-md z-10">
-          {options.map((option) => (
-            <li
-              key={option.value}
-              className={`p-2 hover:bg-gray-100 cursor-pointer ${selectedOptions.includes(option.value) ? "bg-gray-200" : ""}`}
-              onClick={() => toggleSelection(option.value)}
-            >
-              {option.label}
+        <ul
+        className="absolute left-0 right-0 bg-white border border-gray-200 mt-1 rounded-md z-10"
+        style={{ maxHeight: '200px', overflowY: 'auto' }} // Set a max height and enable scrolling
+      >
+        {options.map((option) => (
+          <li
+            key={option.value}
+            className={`p-2 hover:bg-gray-100 cursor-pointer ${selectedOptions.includes(option.value) ? "bg-gray-200" : ""}`}
+            onClick={() => toggleSelection(option.value)}
+          >
+      {option.label}
             </li>
           ))}
         </ul>
@@ -66,12 +71,33 @@ const ModifyPromptsPopup: React.FC<ModifyPromptsPopupProps> = ({ isOpen, onClose
   }
 
   const handleSaveChanges = () => {
-    // Handle saving changes here
-    console.log({ selectedPrompts, selectedDiseases, selectedRegions });
-    onSave({ selectedPrompts, selectedDiseases, selectedRegions });
-    onClose();
-  };
+    console.log('Save Changes clicked');
+    const data = {
+      prompts: selectedPrompts,
+      specificDiseases: selectedDiseases,
+      specificRegionsCountries: selectedRegions
+    };  
+    fetch('http://localhost:3001/save-selected-prompts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Success:', data);
+      onSave({ selectedPrompts, selectedDiseases, selectedRegions }); // Call onSave with the data you intended to save
+      onClose(); // Close the popup
+    })
 
+  };
+  
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center">
       <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
