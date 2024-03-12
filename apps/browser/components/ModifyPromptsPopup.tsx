@@ -72,11 +72,15 @@ const ModifyPromptsPopup: React.FC<ModifyPromptsPopupProps> = ({ isOpen, onClose
 
   const handleSaveChanges = () => {
     console.log('Save Changes clicked');
+    const selectedPromptsFinal = selectedPrompts.length > 0 ? selectedPrompts : promptsOptions.map(option => option.value);
+    const selectedDiseasesFinal = selectedDiseases.length > 0 ? selectedDiseases : diseasesOptions.map(option => option.value);
+    const selectedRegionsFinal = selectedRegions.length > 0 ? selectedRegions : regionsOptions.map(option => option.value);
+
     const data = {
-      prompts: selectedPrompts,
-      specificDiseases: selectedDiseases,
-      specificRegionsCountries: selectedRegions
-    };  
+      prompts: selectedPromptsFinal,
+      specificDiseases: selectedDiseasesFinal,
+      specificRegionsCountries: selectedRegionsFinal
+    }; 
     fetch('http://localhost:3001/save-selected-prompts', {
       method: 'POST',
       headers: {
@@ -92,7 +96,7 @@ const ModifyPromptsPopup: React.FC<ModifyPromptsPopupProps> = ({ isOpen, onClose
     })
     .then(data => {
       console.log('Success:', data);
-      onSave({ selectedPrompts, selectedDiseases, selectedRegions }); // Call onSave with the data you intended to save
+      onSave({ selectedPrompts: selectedPromptsFinal, selectedDiseases: selectedDiseasesFinal, selectedRegions: selectedRegionsFinal }); // Call onSave with the final selected data
       onClose(); // Close the popup
     })
 

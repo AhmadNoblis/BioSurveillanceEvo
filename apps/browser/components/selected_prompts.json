@@ -1,12 +1,18 @@
 {
   "prompts": [
+    "Healthcare System Impact: \"Search for reports on the impact of [specific disease] on healthcare systems in [specific region/country].\"",
+    "International Health Regulations: \"Retrieve information on International Health Regulations (IHR) compliance and reporting related to [specific disease].\"",
+    "Environmental Factors in Disease Spread: \"Identify reports on environmental factors contributing to the spread of [specific disease].\"",
     "Social Media Monitoring for Disease Outbreaks: \"Monitor social media for mentions of symptoms or outbreaks related to [specific disease] in [specific region/country].\""
   ],
   "specificDiseases": [
+    "Ebola",
     "Zika virus",
-    "Influenza"
+    "Influenza",
+    "Malaria"
   ],
   "specificRegionsCountries": [
+    "Brazil",
     "India",
     "China"
   ]

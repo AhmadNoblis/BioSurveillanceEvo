@@ -206,7 +206,7 @@
                           )}
                         {!msg.evoMessage && !isRunning && (
                           <ReactMarkdown className="prose prose-invert w-full max-w-none">
-                            It seems I have been interrupted, please try again.
+                            Please view step details, web search failed.
                           </ReactMarkdown>
                         )}
                       </div>

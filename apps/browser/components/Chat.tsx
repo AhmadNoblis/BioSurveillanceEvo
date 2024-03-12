@@ -102,7 +102,7 @@ const Chat: React.FC<ChatProps> = ({
       const intervalId = setInterval(() => {
         onGoalSubmit(customPrompts[currentPromptIndex]);
         setCurrentPromptIndex((prevIndex) => (prevIndex + 1) % customPrompts.length);
-      }, 3000);
+      }, 5000);
       return () => clearInterval(intervalId);
     }
   }, [isCycling, currentPromptIndex, onGoalSubmit]);

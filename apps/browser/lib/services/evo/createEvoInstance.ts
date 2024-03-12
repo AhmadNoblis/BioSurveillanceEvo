@@ -67,7 +67,8 @@ export function createEvoInstance(
       CONTEXT_WINDOW_TOKENS: "128000",
       MAX_RESPONSE_TOKENS: "4096",
     });
-
+    console.log('created env in createevoinstance')
+    
     if (openAiApiKey) {
       llm = new OpenAILlmApi(
         env.OPENAI_API_KEY,
