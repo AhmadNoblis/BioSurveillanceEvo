@@ -57,7 +57,7 @@ const DropdownAccount: React.ForwardRefRenderFunction<
       <div
         ref={ref}
         className={clsx(
-          "animate-fade-in absolute bottom-full left-2 w-[272px] rounded-lg border-2 border-zinc-700 bg-zinc-800 p-2 shadow-lg",
+          "animate-fade-in absolute bottom-full left-2 w-[272px] rounded-lg border-2 border-zinc-500 bg-zinc-700 p-2 shadow-lg",
           { hidden: !dropdownOpen },
           { "md:space-y-1": session?.user.email }
         )}
@@ -68,15 +68,6 @@ const DropdownAccount: React.ForwardRefRenderFunction<
             <div className="leading-none">Account Settings</div>
           </div>
         )}
-        <a
-          className="dropdown-menu-item"
-          href="https://discord.gg/r3rwh69cCa"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Question size={16} weight="bold" />
-          <div className="leading-none">Support</div>
-        </a>
         <div className="relative w-full py-2 before:absolute before:h-[2px] before:w-full before:bg-zinc-700"></div>
         {session?.user.email ? (
           <div className="dropdown-menu-item" onClick={() => signOut()}>

@@ -157,9 +157,9 @@ const Chat: React.FC<ChatProps> = ({
   )}
       
       {/*end of code for logo*/}
-      <div className={clsx("mt-4 flex w-full space-y-4", shouldShowExamplePrompts ? "flex-col-reverse space-y-reverse px-4 md:px-8 lg:px-4" : "mx-auto max-w-[56rem] flex-col px-4")}>
+      <div className={clsx("mt-4 flex w-full space-y-4", shouldShowExamplePrompts ? "flex-col-reverse space-y-reverse px-4 md:px-8 lg:px-4" : "mx-auto max-w-[75rem] flex-col px-4")}>
         {shouldShowExamplePrompts && <ExamplePrompts onClick={handleGoalSubmit} />}
-        <div className={clsx("mb-4 flex w-full items-center justify-center gap-4 self-center", shouldShowExamplePrompts ? "max-w-[60rem]" : "max-w-[56rem]")}>
+        <div className={clsx("mb-4 flex w-full items-center justify-center gap-4 self-center", shouldShowExamplePrompts ? "max-w-[60rem]" : "max-w-[75rem]")}>
           <TextField
             type="text"
             value={message}
@@ -170,7 +170,7 @@ const Chat: React.FC<ChatProps> = ({
               }
             }}
               placeholder="Find, track, and discover emerging infectious disease outbreaks"
-            className="!rounded-lg !p-4 !pl-12"
+            className="!rounded-lg !p-4 !pl-12 w-120"
             leftAdornment={
               <>
                 <Button variant="icon" className="!text-zinc-500" onClick={onUploadOpen}><UploadSimple size={20} /></Button>
@@ -181,9 +181,9 @@ const Chat: React.FC<ChatProps> = ({
             rightAdornmentClassnames="!right-3"
             disabled={isRunning || showDisclaimer}
           />
-          <Button onClick={startCyclingPrompts} disabled={isCycling}>Start Cycling</Button>
-          <Button onClick={stopCycling} disabled={!isCycling}>Stop Cycling</Button>
-          <Button onClick={() => setShowModifyPrompts(true)} disabled={isCycling || showDisclaimer}>Modify Prompts</Button>
+          <Button onClick={startCyclingPrompts} disabled={isCycling} className="w-32">Start Auto Search</Button>
+          <Button onClick={stopCycling} disabled={!isCycling} className="w-32">Stop Auto Search</Button>
+          <Button onClick={() => setShowModifyPrompts(true)} disabled={isCycling || showDisclaimer} className="w-32">Modify Prompts</Button>
         </div>
       </div>
       <Disclaimer isOpen={showDisclaimer && !welcomeModalOpen && !signInModalOpen && !settingsModalOpen} onClose={() => setShowDisclaimer(false)} />
