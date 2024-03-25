@@ -2,7 +2,7 @@ import { NodeHtmlMarkdown } from 'node-html-markdown'
 import { load } from "cheerio";
 import axios from "axios";
 
-const FETCH_WEBPAGE_TIMEOUT = 4000;
+const FETCH_WEBPAGE_TIMEOUT = 10000;
 const TRUSTED_SOURCES = [
   "wikipedia",
   "statista",

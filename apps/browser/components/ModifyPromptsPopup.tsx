@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import promptsData from "./prompts.json";
+import TextField from "@/components/TextField";
 
 interface DropdownProps {
   label: string;
@@ -59,6 +60,8 @@ const ModifyPromptsPopup: React.FC<ModifyPromptsPopupProps> = ({ isOpen, onClose
   const [selectedPrompts, setSelectedPrompts] = useState<string[]>([]);
   const [selectedDiseases, setSelectedDiseases] = useState<string[]>([]);
   const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
+  const [activeTab, setActiveTab] = useState('prompt'); // Added state for active tab
+  const [inputValue, setInputValue] = useState(''); // State for the input field value
 
 
   // Dummy options for demonstration
@@ -69,7 +72,92 @@ const ModifyPromptsPopup: React.FC<ModifyPromptsPopupProps> = ({ isOpen, onClose
   if (!isOpen) {
     return null;
   }
+  const renderInputField = () => {
+    // Define a common onChange handler
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(e.target.value);
+    };
+  
+    // Define a common onKeyDown handler
+    // Adjust this as necessary for your application's logic, such as submitting data
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Enter") {
+        console.log("Enter key pressed with value:", inputValue);
+        let type = '';
+        switch(activeTab) {
+          case 'prompt':
+            type = 'prompt';
+            break;
+          case 'disease':
+            type = 'disease';
+            break;
+          case 'region/country':
+            type = 'region/country';
+            break;
+          default:
+            console.error('Invalid type');
+            return;
+        }
+    
+        // The value to add is in inputValue
+        const value = inputValue;
+    
+        // Send the data to the server
+        fetch('http://localhost:3001/add-prompt', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ type, value }),
+        })
+        .then(response => {
+          const contentType = response.headers.get('content-type');
+          if (!response.ok || !contentType || !contentType.includes('application/json')) {
+            console.log(response);
+            throw new Error('Non-JSON response received');
 
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Success:', data);
+          setInputValue(''); // Clear the input value after successful submission
+        })
+        .catch(error => {
+          console.error('Error:', error.message);
+        });
+      }
+    };
+  
+    // Depending on the activeTab, render the TextField with specific placeholders
+    // No need for a switch statement if the only difference is the placeholder text
+    let placeholderText = '';
+    switch(activeTab) {
+      case 'prompt':
+        placeholderText = "Enter prompt";
+        break;
+      case 'disease':
+        placeholderText = "Enter disease";
+        break;
+      case 'region/country':
+        placeholderText = "Enter region/country";
+        break;
+      default:
+        return null; // Or handle this scenario differently if needed
+    }
+  
+    return (
+      <TextField
+        type="text"
+        placeholder={placeholderText}
+        value={inputValue}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        className="w-full p-2 border rounded-l mb-4" // Adjust the styling as needed
+      />
+    );
+  };
+  
   const handleSaveChanges = () => {
     console.log('Save Changes clicked');
     const selectedPromptsFinal = selectedPrompts.length > 0 ? selectedPrompts : promptsOptions.map(option => option.value);
@@ -104,8 +192,32 @@ const ModifyPromptsPopup: React.FC<ModifyPromptsPopupProps> = ({ isOpen, onClose
   
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center">
+      
       <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
-  
+      <h2 style={{ color: '#71717a', textAlign: 'center' }} className="text-xl font-semibold mb-4">Add Selections</h2> {/* Add Selections Header */}
+
+      <div className="flex justify-around mb-4">
+      <button
+        className={`tab-button px-4 py-2 rounded-lg font-medium text-sm transition-colors duration-150 ${activeTab === 'prompt' ? 'bg-zinc-400 text-white' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+        onClick={() => setActiveTab('prompt')}
+      >
+        Prompt
+      </button>
+      <button
+        className={`tab-button px-4 py-2 rounded-lg font-medium text-sm transition-colors duration-150 ${activeTab === 'disease' ? 'bg-zinc-400 text-white' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+        onClick={() => setActiveTab('disease')}
+      >
+        Disease
+      </button>
+      <button
+        className={`tab-button px-4 py-2 rounded-lg font-medium text-sm transition-colors duration-150 ${activeTab === 'region/country' ? 'bg-zinc-400 text-white' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+        onClick={() => setActiveTab('region/country')}
+      >
+        Region/Country
+      </button>
+    </div>
+
+        {renderInputField()}
       <h2 style={{ color: '#71717a', textAlign: 'center' }} className="text-xl font-semibold mb-4">Modify Selections</h2>
         <Dropdown label="Prompts" options={promptsOptions} selectedOptions={selectedPrompts} onChange={setSelectedPrompts} />
         <Dropdown label="Diseases" options={diseasesOptions} selectedOptions={selectedDiseases} onChange={setSelectedDiseases} />
