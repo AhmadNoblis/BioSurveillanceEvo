@@ -4,6 +4,7 @@ import { cleanOpenAIError } from "../utils/openai";
 import OpenAIApi from "openai";
 import { Logger } from "@evo-ninja/agent-utils";
 import { ChatCompletionMessage, ChatCompletionMessageParam, ChatCompletionTool } from "openai/resources";
+import OpenAI from 'openai'
 
 interface OpenAIError {
   status: number;
@@ -70,7 +71,6 @@ export class OpenAILlmApi implements LlmApi {
           `Chat completion message was undefined: ${JSON.stringify(choice, null, 2)}`
         );
       }
-
       return choice.message;
     } catch (err) {
       const error = cleanOpenAIError(err);
@@ -108,13 +108,14 @@ export class OpenAILlmApi implements LlmApi {
     model?: LlmModel;
     functions?: FunctionDefinition[];
   } & LlmOptions) {
-    return this._api.chat.completions.create({
-      messages: options.messages,
-      model: options.model || this._defaultModel,
-      functions: options.functions,
-      function_call: options.functions ? "auto" : undefined,
-      temperature: options.temperature || 0,
-      max_tokens: options.max_tokens
-    });
+    console.log('openaillmapi.ts reached');
+    const openai = new OpenAI({
+      baseURL: 'http://localhost:11434/v1',
+      apiKey: 'ollama', // required but unused
+    })
+    return  openai.chat.completions.create({
+      model: 'llama2',
+      messages: [{ role: 'user', content: 'Why is the sky blue?' }],
+    })
   }
 }

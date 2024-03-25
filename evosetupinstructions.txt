@@ -1,0 +1,55 @@
+I used windows for this and I recommend using just a basic virtual environment, if you use docker it'll do docker in docker which is difficult to setup
+
+
+So this is how to set up my evo.ninja,
+
+git clone https://github.com/AhmadNoblis/BioSurveillanceEvo
+
+Install docker desktop in background and keep running in the background as the project uses it 
+
+nvm install && nvm use
+yarn && yarn build
+npm install express
+npm install cors
+npm install concurrently
+cd apps/browser
+yarn db:start  
+in apps/browser copy my .env I sent you
+
+yarn dev           in localhost:3000 this should have the app
+
+
+I'm not sure if yarn db:start will override my frontend changes or not, if it does I can go through and remove stuff from .gitignore.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
