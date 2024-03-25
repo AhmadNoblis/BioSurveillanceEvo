@@ -211,7 +211,7 @@ const Sidebar = ({
                               {chat.id === editChat?.id ? (
                                 <div ref={editTitleInputRef}>
                                   <TextField
-                                    className="!border-none !p-1 focus:!bg-zinc-500"
+                                    className="!border-none !p-1 focus:!bg-zinc-100"
                                     defaultValue={chat.name}
                                     onKeyDown={async (e) => {
                                       if (e.key === "Enter") {

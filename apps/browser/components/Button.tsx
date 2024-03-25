@@ -45,7 +45,7 @@
     };
 
     const variantClasses = {
-      icon: "border-none bg-none !p-1 text-zinc-500 hover:!text-zinc-500 focus-within:ring-2 focus-within:ring-zinc-500/10",
+      icon: "border-none bg-none !p-1 text-zinc-500 hover:!text-zinc-800 focus-within:ring-2 focus-within:ring-zinc-500/10",
       text: "border-none bg-none !p-1 text-zinc-500 hover:text-white",
     };
     const variantClass = variant ? variantClasses[variant] : null;

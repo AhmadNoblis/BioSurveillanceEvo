@@ -41,6 +41,7 @@ export class ProxyLlmApi implements LlmApi {
     if (!goalId) {
       throw Error("GoalID is not set");
     }
+    console.log('Hit proxyllmapi.ts getResponse')
 
     const response = await fetch("/api/proxy/completions", {
       method: "POST",
@@ -83,7 +84,7 @@ export class ProxyLlmApi implements LlmApi {
     }
     const { message } = await response.json();
     console.log("Received message"); // Print the message to the terminal
-
+    console.log('returned message in proxyllmapi')
     return message;
   }
 }

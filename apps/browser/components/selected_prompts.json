@@ -1,13 +1,14 @@
 {
   "prompts": [
-    "Social Media Monitoring for Disease Outbreaks: \"Monitor social media for mentions of symptoms or outbreaks related to [specific disease] in [specific region/country].\""
+    "Virus Variant Tracking: \"Identify updates on new variants of [specific disease] reported by genomic surveillance networks.\"",
+    "Disease Surveillance Updates: \"Search for recent updates on disease surveillance from public health agencies worldwide.\""
   ],
   "specificDiseases": [
-    "Zika virus",
+    "Ebola",
     "Influenza"
   ],
   "specificRegionsCountries": [
-    "India",
-    "China"
+    "United Kingdom",
+    "Australia"
   ]
 }

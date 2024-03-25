@@ -49,7 +49,7 @@ function Workspace({ onUpload }: WorkspaceProps) {
     <div className="p-2">
       <div className="flex w-full items-center justify-between space-x-1 px-2">
         <div className="text-xs uppercase tracking-widest text-zinc-100">
-          Current Workspace
+          Current CSV Workspace
         </div>
         <div className="flex items-center space-x-1">
           <Button variant="icon" onClick={onOpen} style={{ color: '#D9E2EC' }}>
@@ -81,7 +81,7 @@ function Workspace({ onUpload }: WorkspaceProps) {
                 <FilePlus size={24} className="text-[#D9E2EC]" />
                 <p className="leading-regular text-xs text-zinc-100">
                   You currently have no files in your workspace. Drop or click
-                  here to add them.
+                  csv files here to add them.
                 </p>
               </div>
             ) : (

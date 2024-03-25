@@ -32,9 +32,11 @@ export async function POST(request: NextRequest) {
   if (data.title) {
     return NextResponse.json({}, { status: 200 });
   }
+  console.log('generating title')
 
   try {
     const openAi = createOpenAIApiClient();
+    console.log('generating title')
     const completion = await openAi.chat.completions.create({
       messages: [
         {
